@@ -47,9 +47,33 @@ fun GreetingPreview() {
     }
 }
 
-@Kombine
-data class SampleDataClass(
+@Kombine(
+    allPossibleStringParams = ["abc", "cde"]
+)
+data class SampleDataClassBooleanAndString(
     val property1: Boolean,
     val property2: Boolean,
-    val property3: Boolean
+    val property3: String,
+)
+
+@Kombine(
+    allPossibleStringParams = ["abc", "cde"]
+)
+data class SampleDataClassBoolean(
+    val property1: Boolean,
+    val property2: Boolean
+)
+
+@Kombine
+data class SampleDataClassBooleanNoStringParams(
+    val property1: Boolean,
+    val property2: Boolean
+)
+
+@Kombine(
+    allPossibleStringParams = ["abc", "cde"]
+)
+data class SampleDataClassString(
+    val property1: String,
+    val property2: String
 )
