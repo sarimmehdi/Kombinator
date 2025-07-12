@@ -20,6 +20,7 @@ import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.LIST
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.ksp.toTypeName
@@ -29,6 +30,7 @@ data class ConstructorParameterInfo(
     val name: String,
     val type: TypeName,
     val isBoolean: Boolean,
+    val isString: Boolean,
     val ksParameter: KSValueParameter
 )
 
@@ -81,6 +83,34 @@ class Processor(
                 return
             }
 
+            val allPossibleStringParamsFromAnnotation: List<String> = annotation.arguments
+                .firstOrNull { it.name?.asString() == "allPossibleStringParams" }
+                ?.value.let { value ->
+                    if (value is List<*>) {
+                        value.mapNotNull { item ->
+                            if (item is String) {
+                                item
+                            } else {
+                                logger.warn("Unexpected type in 'allPossibleStringParams'. Expected String, got ${item?.javaClass?.name}", classDeclaration)
+                                null
+                            }
+                        }
+                    } else if (value != null) {
+                        logger.warn("'allPossibleStringParams' is not a List. Found: ${value.javaClass.name}", classDeclaration)
+                        emptyList()
+                    }
+                    else {
+                        emptyList()
+                    }
+                }
+
+            if (allPossibleStringParamsFromAnnotation.isEmpty()) {
+                logger.info(
+                    "No 'allPossibleStringParams' provided in @Kombine for ${classDeclaration.simpleName.asString()}",
+                    classDeclaration
+                )
+            }
+
             val originalClassNameString = classDeclaration.simpleName.asString()
             val originalClassTypeName = classDeclaration.asType(emptyList()).toTypeName()
             val packageName = classDeclaration.packageName.asString()
@@ -102,7 +132,7 @@ class Processor(
                     return@mapNotNull null
                 }
                 val type = ksParam.type.resolve().toTypeName()
-                ConstructorParameterInfo(name, type, type == BOOLEAN, ksParam)
+                ConstructorParameterInfo(name, type, type == BOOLEAN, type == STRING, ksParam)
             }
 
             if (constructorParameters.isEmpty() && primaryConstructor.parameters.isNotEmpty()) {
@@ -111,17 +141,24 @@ class Processor(
             }
 
             val booleanConstructorParams = constructorParameters.filter { it.isBoolean }
+            val stringConstructorParams = constructorParameters.filter { it.isString }
 
-            if (booleanConstructorParams.isEmpty()) {
+            if (booleanConstructorParams.isEmpty() && stringConstructorParams.isEmpty()) {
                 logger.warn(
-                    "No boolean constructor parameters found in ${classDeclaration.qualifiedName?.asString()} " +
-                            "to generate combinations.", classDeclaration
+                    "No boolean or string constructor parameters found in ${classDeclaration.qualifiedName?.asString()} " +
+                            "to generate combinations. Ensure 'allPossibleStringParams' is provided if only string params exist.",
+                    classDeclaration
                 )
                 return
             }
-
-            val numBooleanProperties = booleanConstructorParams.size
-            val totalCombinations = 1 shl numBooleanProperties
+            if (stringConstructorParams.isNotEmpty() && allPossibleStringParamsFromAnnotation.isEmpty()) {
+                logger.error(
+                    "Class ${classDeclaration.qualifiedName?.asString()} has String parameters but " +
+                            "'allPossibleStringParams' in @Kombine is empty. Provide string values to combine.",
+                    classDeclaration
+                )
+                return
+            }
 
             val generatedObjectName = "${originalClassNameString}Combinations"
             val fileBuilder = FileSpec.builder(packageName, generatedObjectName)
@@ -134,32 +171,69 @@ class Processor(
             val generatedPropertyNames = mutableListOf<String>()
             var instanceCounter = 1
 
-            for (i in 0 until totalCombinations) {
-                val booleanValuesForThisCombination = mutableMapOf<String, Boolean>()
-                val combinationNameParts = mutableListOf<String>()
+            val totalBooleanCombinations = 1 shl booleanConstructorParams.size
+            val numStringParamsToCombine = stringConstructorParams.size
+            val numProvidedStringValues = allPossibleStringParamsFromAnnotation.size
+            var totalStringPermutations = 1
+            if (numStringParamsToCombine > 0 && numProvidedStringValues > 0) {
+                repeat(numStringParamsToCombine) {
+                    totalStringPermutations *= numProvidedStringValues
+                }
+            } else if (numStringParamsToCombine > 0) {
+                logger.error("String parameters exist but no string values provided for combinations.", classDeclaration)
+                return
+            }
 
-                for (j in 0 until numBooleanProperties) {
+
+            for (boolCombinationIndex in 0 until totalBooleanCombinations) {
+                val booleanValuesForThisCombination = mutableMapOf<String, Boolean>()
+                val boolCombinationNameParts = mutableListOf<String>()
+
+                for (j in 0 until booleanConstructorParams.size) {
                     val paramInfo = booleanConstructorParams[j]
                     val propertyName = paramInfo.name
-                    val isTrue = (i shr j) and 1 == 1
+                    val isTrue = (boolCombinationIndex shr j) and 1 == 1
                     booleanValuesForThisCombination[propertyName] = isTrue
-                    combinationNameParts.add("$propertyName = $isTrue")
+                    boolCombinationNameParts.add("$propertyName = $isTrue")
                 }
 
-                val basePropertyName = originalClassNameString.replaceFirstChar { it.lowercaseChar() }
-                val instancePropertyName = "${basePropertyName}${instanceCounter}"
-                instanceCounter++
+                for (stringPermutationIndex in 0 until totalStringPermutations) {
+                    val stringValuesForThisCombination = mutableMapOf<String, String>()
+                    val stringCombinationNameParts = mutableListOf<String>()
+                    var tempStringIndex = stringPermutationIndex
 
-                generatedPropertyNames.add(instancePropertyName)
+                    if (numStringParamsToCombine > 0 && numProvidedStringValues > 0) {
+                        for (k in 0 until numStringParamsToCombine) {
+                            val paramInfo = stringConstructorParams[k]
+                            val propertyName = paramInfo.name
+                            val valueIndex = tempStringIndex % numProvidedStringValues
+                            val stringValue = allPossibleStringParamsFromAnnotation[valueIndex]
+                            stringValuesForThisCombination[propertyName] = stringValue
+                            stringCombinationNameParts.add("$propertyName = \"$stringValue\"")
+                            tempStringIndex /= numProvidedStringValues
+                        }
+                    }
 
-                generateInstanceProperty(
-                    objectBuilder = objectBuilder,
-                    originalClassTypeName = originalClassTypeName,
-                    instancePropertyName = instancePropertyName,
-                    fixedBooleanValues = booleanValuesForThisCombination,
-                    combinationNameForKdoc = "\n" + combinationNameParts.joinToString("\n")
-                )
+
+                    val basePropertyName = originalClassNameString.replaceFirstChar { it.lowercaseChar() }
+                    val instancePropertyName = "${basePropertyName}${instanceCounter}"
+                    instanceCounter++
+
+                    generatedPropertyNames.add(instancePropertyName)
+
+                    val allCombinationNameParts = boolCombinationNameParts + stringCombinationNameParts
+
+                    generateInstanceProperty(
+                        objectBuilder = objectBuilder,
+                        originalClassTypeName = originalClassTypeName,
+                        instancePropertyName = instancePropertyName,
+                        fixedBooleanValues = booleanValuesForThisCombination,
+                        fixedStringValues = stringValuesForThisCombination, // Pass string values
+                        combinationNameForKdoc = "\n" + allCombinationNameParts.joinToString("\n")
+                    )
+                }
             }
+            // ****** MODIFICATION END ******
 
             if (generatedPropertyNames.isNotEmpty()) {
                 val listType = LIST.parameterizedBy(originalClassTypeName)
@@ -204,22 +278,29 @@ class Processor(
             originalClassTypeName: TypeName,
             instancePropertyName: String,
             fixedBooleanValues: Map<String, Boolean>,
+            fixedStringValues: Map<String, String>,
             combinationNameForKdoc: String
         ) {
             val propertyArgs = mutableListOf<CodeBlock>()
+
             fixedBooleanValues.forEach { (paramName, value) ->
                 propertyArgs.add(CodeBlock.of("%N = %L", paramName, value))
             }
 
+            fixedStringValues.forEach { (paramName, value) ->
+                propertyArgs.add(CodeBlock.of("%N = %S", paramName, value))
+            }
+
+
             val propertyInitializer = CodeBlock.builder()
                 .add("%T(⇥\n", originalClassTypeName)
-                .add(propertyArgs.joinToString(",\n"))
+                .add(propertyArgs.sortedBy { it.toString().substringBefore(" ") }.joinToString(",\n"))
                 .add("\n⇤)")
                 .build()
 
             val propSpec = PropertySpec.builder(instancePropertyName, originalClassTypeName)
                 .addKdoc(
-                    "An instance of [%T] with boolean flags: %L.\n",
+                    "An instance of [%T] with parameters: %L.\n", // Updated KDoc
                     originalClassTypeName,
                     combinationNameForKdoc
                 )

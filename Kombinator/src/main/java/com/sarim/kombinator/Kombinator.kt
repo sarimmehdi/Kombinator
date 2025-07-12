@@ -3,4 +3,6 @@ package com.sarim.kombinator
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
-annotation class Kombine
+annotation class Kombine(
+    val allPossibleStringParams: Array<String> = []
+)
