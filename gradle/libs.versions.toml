@@ -6,6 +6,8 @@ lifecycleRuntimeKtxVersion = "2.9.1"
 activityComposeVersion = "1.10.1"
 composeBomVersion = "2025.06.01"
 jetbrainsKotlinJvmVersion = "2.2.0"
+kspVersion = "2.2.0-2.0.2"
+kotlinPoetVersion = "2.2.0"
 
 [libraries]
 androidxCoreKtxLibrary = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
@@ -18,10 +20,14 @@ androidxUiToolingLibrary = { group = "androidx.compose.ui", name = "ui-tooling" 
 androidxUiToolingPreviewLibrary = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidxUiTestManifestLibrary = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidxMaterial3Library = { group = "androidx.compose.material3", name = "material3" }
+kspApiLibrary = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "kspVersion" }
+kotlinPoetLibrary = { group = "com.squareup", name = "kotlinpoet", version.ref = "kotlinPoetVersion" }
+kotlinPoetKspLibrary = { group = "com.squareup", name = "kotlinpoet-ksp", version.ref = "kotlinPoetVersion" }
 
 [plugins]
 androidApplicationPlugin = { id = "com.android.application", version.ref = "agpVersion" }
 kotlinAndroidPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
 kotlinComposePlugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
 jetbrainsKotlinJvmPlugin = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvmVersion" }
+kspPlugin = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 

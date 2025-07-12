@@ -3,11 +3,17 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinJvmPlugin)
 }
 java {
-    sourceCompatibility = JavaVersion.VERSION_24
-    targetCompatibility = JavaVersion.VERSION_24
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 kotlin {
     compilerOptions {
-        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_24
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21
     }
+}
+
+dependencies {
+    implementation(libs.kotlinPoetLibrary)
+    implementation(libs.kotlinPoetKspLibrary)
+    implementation(libs.kspApiLibrary)
 }
