@@ -3,6 +3,17 @@ package com.sarim.kombinator
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
-annotation class Kombine(
-    val allPossibleStringParams: Array<String> = []
+annotation class Kombine @OptIn(ExperimentalUnsignedTypes::class) constructor(
+    val allPossibleStringParams: Array<String> = [],
+    val allPossibleIntParams: IntArray = [],
+    val allPossibleFloatParams: FloatArray = [],
+    val allPossibleDoubleParams: DoubleArray = [],
+    val allPossibleLongParams: LongArray = [],
+    val allPossibleByteParams: ByteArray = [],
+    val allPossibleCharParams: CharArray = [],
+    val allPossibleShortParams: ShortArray = [],
+    val allPossibleUByteParams: UByteArray = [],
+    val allPossibleUShortParams: UShortArray = [],
+    val allPossibleUIntParams: UIntArray = [],
+    val allPossibleULongParams: ULongArray = []
 )

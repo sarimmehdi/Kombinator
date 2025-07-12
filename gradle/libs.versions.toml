@@ -8,6 +8,9 @@ composeBomVersion = "2025.06.01"
 jetbrainsKotlinJvmVersion = "2.2.0"
 kspVersion = "2.2.0-2.0.2"
 kotlinPoetVersion = "2.2.0"
+assertJVersion = "3.27.3"
+truthVersion = "1.4.4"
+junitVersion = "4.13.2"
 
 [libraries]
 androidxCoreKtxLibrary = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
@@ -23,6 +26,9 @@ androidxMaterial3Library = { group = "androidx.compose.material3", name = "mater
 kspApiLibrary = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "kspVersion" }
 kotlinPoetLibrary = { group = "com.squareup", name = "kotlinpoet", version.ref = "kotlinPoetVersion" }
 kotlinPoetKspLibrary = { group = "com.squareup", name = "kotlinpoet-ksp", version.ref = "kotlinPoetVersion" }
+junitLibrary = { group = "junit", name = "junit", version.ref = "junitVersion" }
+truthLibrary = { group = "com.google.truth", name = "truth", version.ref = "truthVersion" }
+assertJLibrary = { group = "org.assertj", name = "assertj-core", version.ref = "assertJVersion" }
 
 [plugins]
 androidApplicationPlugin = { id = "com.android.application", version.ref = "agpVersion" }
