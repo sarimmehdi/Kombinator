@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Kombinator-App"
 include(":app")
- 
+include(":Kombinator")

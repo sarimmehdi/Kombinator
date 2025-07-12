@@ -1,25 +1,27 @@
 [versions]
-agp = "8.11.1"
-kotlin = "2.2.0"
-coreKtx = "1.16.0"
-lifecycleRuntimeKtx = "2.9.1"
-activityCompose = "1.10.1"
-composeBom = "2025.06.01"
+agpVersion = "8.11.1"
+kotlinVersion = "2.2.0"
+coreKtxVersion = "1.16.0"
+lifecycleRuntimeKtxVersion = "2.9.1"
+activityComposeVersion = "1.10.1"
+composeBomVersion = "2025.06.01"
+jetbrainsKotlinJvmVersion = "2.2.0"
 
 [libraries]
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
-androidx-ui = { group = "androidx.compose.ui", name = "ui" }
-androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidxCoreKtxLibrary = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
+androidxLifecycleRuntimeKtxLibrary = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtxVersion" }
+androidxActivityComposeLibrary = { group = "androidx.activity", name = "activity-compose", version.ref = "activityComposeVersion" }
+androidxComposeBomLibrary = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBomVersion" }
+androidxUiLibrary = { group = "androidx.compose.ui", name = "ui" }
+androidxUiGraphicsLibrary = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidxUiToolingLibrary = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidxUiToolingPreviewLibrary = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidxUiTestManifestLibrary = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidxMaterial3Library = { group = "androidx.compose.material3", name = "material3" }
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+androidApplicationPlugin = { id = "com.android.application", version.ref = "agpVersion" }
+kotlinAndroidPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
+kotlinComposePlugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
+jetbrainsKotlinJvmPlugin = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvmVersion" }
 
