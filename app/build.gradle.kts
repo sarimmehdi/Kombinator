@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplicationPlugin)
     alias(libs.plugins.kotlinAndroidPlugin)
     alias(libs.plugins.kotlinComposePlugin)
+    alias(libs.plugins.kspPlugin)
 }
 
 android {
@@ -53,4 +54,6 @@ dependencies {
     implementation(libs.androidxMaterial3Library)
     debugImplementation(libs.androidxUiToolingLibrary)
     debugImplementation(libs.androidxUiTestManifestLibrary)
+    implementation(project(":Kombinator"))
+    ksp(project(":Kombinator"))
 }

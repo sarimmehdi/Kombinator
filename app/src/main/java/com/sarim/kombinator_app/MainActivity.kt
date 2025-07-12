@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.sarim.kombinator.Kombine
 import com.sarim.kombinator_app.ui.theme.KombinatorAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,3 +46,10 @@ fun GreetingPreview() {
         Greeting("Android")
     }
 }
+
+@Kombine
+data class SampleDataClass(
+    val property1: Boolean,
+    val property2: Boolean,
+    val property3: Boolean
+)
