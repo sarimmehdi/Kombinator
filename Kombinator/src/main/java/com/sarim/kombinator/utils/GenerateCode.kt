@@ -13,6 +13,7 @@ import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.ksp.writeTo
 
+@Suppress("LongParameterList")
 fun generateCode(
     generatedPropertyNames: List<String>,
     originalClassTypeName: TypeName,

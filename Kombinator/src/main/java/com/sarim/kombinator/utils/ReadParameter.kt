@@ -15,6 +15,7 @@ import com.squareup.kotlinpoet.U_INT
 import com.squareup.kotlinpoet.U_LONG
 import com.squareup.kotlinpoet.U_SHORT
 
+@Suppress("CyclomaticComplexMethod", "LongMethod")
 fun readParameter(
     constructorParameters: List<ConstructorParameterInfo>,
     classLevelAnnotation: KSAnnotation?,
@@ -111,7 +112,8 @@ fun readParameter(
                                     is Number -> item.toLong().toUByte()
                                     else -> {
                                         l.warn(
-                                            "Cannot cast ${item::class.qualifiedName} to UByte for 'allPossibleUByteParams' from $sourceOfValues",
+                                            "Cannot cast ${item::class.qualifiedName} " +
+                                                "to UByte for 'allPossibleUByteParams' from $sourceOfValues",
                                         )
                                         null
                                     }
@@ -131,7 +133,8 @@ fun readParameter(
                                     is Number -> item.toLong().toUShort()
                                     else -> {
                                         l.warn(
-                                            "Cannot cast ${item::class.qualifiedName} to UShort for 'allPossibleUShortParams' from $sourceOfValues",
+                                            "Cannot cast ${item::class.qualifiedName} " +
+                                                "to UShort for 'allPossibleUShortParams' from $sourceOfValues",
                                         )
                                         null
                                     }
@@ -151,7 +154,8 @@ fun readParameter(
                                     is Number -> item.toLong().toUInt()
                                     else -> {
                                         l.warn(
-                                            "Cannot cast ${item::class.qualifiedName} to UInt for 'allPossibleUIntParams' from $sourceOfValues",
+                                            "Cannot cast ${item::class.qualifiedName} " +
+                                                "to UInt for 'allPossibleUIntParams' from $sourceOfValues",
                                         )
                                         null
                                     }
@@ -171,7 +175,8 @@ fun readParameter(
                                     is Number -> item.toLong().toULong()
                                     else -> {
                                         l.warn(
-                                            "Cannot cast ${item::class.qualifiedName} to ULong for 'allPossibleULongParams' from $sourceOfValues",
+                                            "Cannot cast ${item::class.qualifiedName} " +
+                                                "to ULong for 'allPossibleULongParams' from $sourceOfValues",
                                         )
                                         null
                                     }
@@ -202,7 +207,8 @@ fun readParameter(
                         else -> "unknown arg name!"
                     }
                 logger.error(
-                    "Parameter '${paramInfo.name}: ${paramInfo.type}' in $originalClassNameString uses $sourceOfValues, " +
+                    "Parameter '${paramInfo.name}: ${paramInfo.type}' " +
+                        "in $originalClassNameString uses $sourceOfValues, " +
                         "but its '$argName' is empty. Provide values to combine or remove the annotation/parameter.",
                     paramInfo.ksParameter,
                 )

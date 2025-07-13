@@ -93,6 +93,7 @@ import com.sarim.kombinator_app.sample.SampleDataClass3BooleansWithUShortParams
 import com.sarim.kombinator_app.sample.SampleDataClass3BooleansWithUShortParamsCombinations
 import org.junit.Test
 
+@Suppress("LargeClass")
 class SampleDataClassBooleanTest {
     @Test
     fun testSampleDataClass1BooleanCombinations() {

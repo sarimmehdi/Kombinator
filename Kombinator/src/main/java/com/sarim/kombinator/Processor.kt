@@ -4,6 +4,7 @@ import com.google.devtools.ksp.processing.CodeGenerator
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.processing.Resolver
 import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.symbol.ClassKind.ENUM_CLASS
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSVisitorVoid
@@ -64,13 +65,13 @@ class Processor(
     inner class DataClassVisitor(
         private val annotationClassQualifiedName: String,
     ) : KSVisitorVoid() {
+        @Suppress("CyclomaticComplexMethod", "LongMethod", "ReturnCount")
         override fun visitClassDeclaration(
             classDeclaration: KSClassDeclaration,
             data: Unit,
         ) {
             val classLevelAnnotation =
                 classDeclaration.annotations.firstOrNull {
-                    // Renamed for clarity
                     it.annotationType
                         .resolve()
                         .declaration.qualifiedName
@@ -90,7 +91,10 @@ class Processor(
 
             val primaryConstructor = classDeclaration.primaryConstructor
             if (primaryConstructor == null) {
-                logger.error("Class ${classDeclaration.qualifiedName?.asString()} needs a primary constructor.", classDeclaration)
+                logger.error(
+                    "Class ${classDeclaration.qualifiedName?.asString()} needs a primary constructor.",
+                    classDeclaration,
+                )
                 return
             }
 
@@ -98,7 +102,10 @@ class Processor(
                 primaryConstructor.parameters.mapNotNull { ksParam ->
                     val name = ksParam.name?.asString()
                     if (name == null) {
-                        logger.error("Constructor parameter in $originalClassNameString has no name.", ksParam)
+                        logger.error(
+                            "Constructor parameter in $originalClassNameString has no name.",
+                            ksParam,
+                        )
                         return@mapNotNull null
                     }
                     val resolvedType = ksParam.type.resolve()
@@ -107,7 +114,7 @@ class Processor(
 
                     var isEnumType = false
                     var enumDeclaration: KSClassDeclaration? = null
-                    if (declaration is KSClassDeclaration && declaration.classKind == com.google.devtools.ksp.symbol.ClassKind.ENUM_CLASS) {
+                    if (declaration is KSClassDeclaration && declaration.classKind == ENUM_CLASS) {
                         isEnumType = true
                         enumDeclaration = declaration
                     }
@@ -145,45 +152,52 @@ class Processor(
                 }
 
             if (constructorParameters.isEmpty() && primaryConstructor.parameters.isNotEmpty()) {
-                logger.error("Failed to parse constructor parameters for $originalClassNameString.", classDeclaration)
+                logger.error(
+                    "Failed to parse constructor parameters for $originalClassNameString.",
+                    classDeclaration,
+                )
                 return
             }
 
-            val combinableParameterGroups = mutableListOf<Pair<ConstructorParameterInfo, List<Any>>>()
+            val combinableParameterGroups =
+                mutableListOf<Pair<ConstructorParameterInfo, List<Any>>>()
 
             constructorParameters.filter { it.isBoolean && !it.hasDefaultValue }.forEach {
                 combinableParameterGroups.add(it to listOf(false, true))
             }
 
-            constructorParameters.filter { it.isEnum && it.enumClassDeclaration != null && !it.hasDefaultValue }.forEach { paramInfo ->
-                val enumClassDeclaration = paramInfo.enumClassDeclaration
-                if (enumClassDeclaration == null) {
-                    logger.error(
-                        "Enum parameter '${paramInfo.name}' in $originalClassNameString is missing its class declaration.",
-                        paramInfo.ksParameter,
-                    )
-                    return@forEach
-                }
+            constructorParameters
+                .filter { it.isEnum && it.enumClassDeclaration != null && !it.hasDefaultValue }
+                .forEach { paramInfo ->
+                    val enumClassDeclaration = paramInfo.enumClassDeclaration
+                    if (enumClassDeclaration == null) {
+                        logger.error(
+                            "Enum parameter '${paramInfo.name}' in $originalClassNameString " +
+                                "is missing its class declaration.",
+                            paramInfo.ksParameter,
+                        )
+                        return@forEach
+                    }
 
-                val enumConstants =
-                    enumClassDeclaration.declarations
-                        .filterIsInstance<KSClassDeclaration>()
-                        .filter { it.classKind == com.google.devtools.ksp.symbol.ClassKind.ENUM_ENTRY }
-                        .map { enumEntry ->
-                            enumEntry.simpleName.asString()
-                        }.toList()
+                    val enumConstants =
+                        enumClassDeclaration.declarations
+                            .filterIsInstance<KSClassDeclaration>()
+                            .filter { it.classKind == com.google.devtools.ksp.symbol.ClassKind.ENUM_ENTRY }
+                            .map { enumEntry ->
+                                enumEntry.simpleName.asString()
+                            }.toList()
 
-                if (enumConstants.isNotEmpty()) {
-                    combinableParameterGroups.add(paramInfo to enumConstants)
-                } else {
-                    logger.warn(
-                        "Enum parameter '${paramInfo.name}: ${paramInfo.type}' in $originalClassNameString " +
-                            "is of type ${enumClassDeclaration.qualifiedName?.asString()} " +
-                            "but it has no enum constants. No combinations will be generated for this parameter.",
-                        paramInfo.ksParameter,
-                    )
+                    if (enumConstants.isNotEmpty()) {
+                        combinableParameterGroups.add(paramInfo to enumConstants)
+                    } else {
+                        logger.warn(
+                            "Enum parameter '${paramInfo.name}: ${paramInfo.type}' in $originalClassNameString " +
+                                "is of type ${enumClassDeclaration.qualifiedName?.asString()} " +
+                                "but it has no enum constants. No combinations will be generated for this parameter.",
+                            paramInfo.ksParameter,
+                        )
+                    }
                 }
-            }
 
             readParameter(
                 constructorParameters = constructorParameters,
@@ -200,14 +214,16 @@ class Processor(
                 if (hasAnyKombineAnnotationWithPotentialValues) {
                     logger.warn(
                         "No effective parameter combinations to generate for $originalClassNameString. " +
-                            "This might be because all provided value lists in @Kombine (class or parameter level) are empty, " +
+                            "This might be because all provided value lists in @Kombine " +
+                            "(class or parameter level) are empty, " +
                             "or parameters are not of supported types for combination.",
                         classDeclaration,
                     )
                 } else {
                     logger.warn(
                         "No parameters found in $originalClassNameString to generate combinations from @Kombine. " +
-                            "Ensure @Kombine is used on the class or on individual parameters with values for supported types.",
+                            "Ensure @Kombine is used on the class or on individual parameters " +
+                            "with values for supported types.",
                         classDeclaration,
                     )
                 }
@@ -226,10 +242,12 @@ class Processor(
 
             val generatedPropertyNames = mutableListOf<String>()
 
-            val totalCombinations = combinableParameterGroups.fold(1) { acc, group -> acc * group.second.size }
+            val totalCombinations =
+                combinableParameterGroups.fold(1) { acc, group -> acc * group.second.size }
             if (totalCombinations == 0 && combinableParameterGroups.isNotEmpty()) {
                 logger.warn(
-                    "Total combinations is 0, likely due to an empty list of provided values for a typed parameter in $originalClassNameString, despite groups being identified.",
+                    "Total combinations is 0, likely due to an empty list of provided values " +
+                        "for a typed parameter in $originalClassNameString, despite groups being identified.",
                     classDeclaration,
                 )
                 return

@@ -13,6 +13,7 @@ import com.squareup.kotlinpoet.U_INT
 import com.squareup.kotlinpoet.U_LONG
 import com.squareup.kotlinpoet.U_SHORT
 
+@Suppress("LongParameterList")
 fun writeProperties(
     totalCombinations: Int,
     combinableParameterGroups: MutableList<Pair<ConstructorParameterInfo, List<Any>>>,
@@ -71,6 +72,7 @@ fun writeProperties(
     }
 }
 
+@Suppress("LongParameterList", "CyclomaticComplexMethod")
 fun generateInstanceProperty(
     objectBuilder: TypeSpec.Builder,
     originalClassTypeName: TypeName,
@@ -84,6 +86,7 @@ fun generateInstanceProperty(
 
     val sortedParamNames = parameterValues.keys.sorted()
 
+    @Suppress("LoopWithTooManyJumpStatements")
     for (paramName in sortedParamNames) {
         val value = parameterValues[paramName] ?: continue
         val paramInfo = parameterInfos.firstOrNull { it.name == paramName }

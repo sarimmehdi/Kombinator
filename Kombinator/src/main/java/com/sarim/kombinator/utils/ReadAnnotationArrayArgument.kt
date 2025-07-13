@@ -26,8 +26,10 @@ fun <T> readAnnotationArrayArgument(
                     val castedValue = caster(item, logger)
                     if (castedValue == null) {
                         logger.warn(
-                            "Unexpected item type or failed cast in '$argumentName' for @${annotation.shortName.asString()}. " +
-                                "Expected to be able to convert to $expectedItemTypeName, got ${item::class.qualifiedName} with value '$item'.",
+                            "Unexpected item type or failed cast in '$argumentName' " +
+                                    "for @${annotation.shortName.asString()}. Expected to be able to " +
+                                    "convert to $expectedItemTypeName, got ${item::class.qualifiedName} " +
+                                    "with value '$item'.",
                             annotation,
                         )
                         null

@@ -35,6 +35,40 @@ jobs:
             echo "KTLint found violations that could not be automatically fixed."
             exit 1
           fi
+  detekt-analysis:
+    name: Run Detekt Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4.7.1
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3.5.0
+
+      - name: Run Detekt and Attempt Auto-Correction
+        run: ./gradlew detekt --auto-correct
+
+      - name: Check for remaining Detekt issues
+        run: ./gradlew detektCheck
+
+      - name: Upload Detekt reports
+        if: failure()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: detekt-reports
+          path: |
+            **/build/reports/detekt/*.html
+            **/build/reports/detekt/*.xml
+            **/build/reports/detekt/*.txt
+            **/build/reports/detekt/*.sarif
+          retention-days: 7
   build_app:
     name: Build Application
     runs-on: ubuntu-latest

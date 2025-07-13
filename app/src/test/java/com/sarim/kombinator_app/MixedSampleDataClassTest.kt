@@ -86,6 +86,7 @@ class MixedSampleDataClassTest {
         ).isIn(0 until allItemsAsList.size)
     }
 
+    @Suppress("LongMethod")
     @Test
     fun testMixedSampleDataClassAllParamsAnnotatedCombinations() {
         val allItemsAsList =
@@ -158,7 +159,8 @@ class MixedSampleDataClassTest {
     fun testMixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValueCombinations() {
         val allItemsAsList =
             MixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValueCombinations.getAllCombinations()
-        val allItemsAsSet = MixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValueCombinations.getAllCombinations().toSet()
+        val allItemsAsSet =
+            MixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValueCombinations.getAllCombinations().toSet()
         assertThat(allItemsAsList.size).isEqualTo(allItemsAsSet.size)
         assertThat(
             allItemsAsList.filter { !it.property1 }.size,

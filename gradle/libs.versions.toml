@@ -7,7 +7,8 @@ kotlinPoetVersion = "2.2.0"
 assertJVersion = "3.27.3"
 truthVersion = "1.4.4"
 junitVersion = "4.13.2"
-ktlint = "13.0.0"
+ktlintVersion = "13.0.0"
+detektVersion = "1.23.8"
 
 [libraries]
 kspApiLibrary = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "kspVersion" }
@@ -22,5 +23,6 @@ androidApplicationPlugin = { id = "com.android.application", version.ref = "agpV
 kotlinAndroidPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
 jetbrainsKotlinJvmPlugin = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvmVersion" }
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+ktlintPlugin = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintVersion" }
+detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektVersion" }
 
