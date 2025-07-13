@@ -109,3 +109,20 @@ data class MixedSampleDataClassAllParamsAnnotated(
     @Kombine(allPossibleIntParams = [1, 2, 3]) val property9: Int,
     @Kombine(allPossibleCharParams = ['5']) val property10: Char,
 )
+
+@Kombine
+data class MixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValue(
+    val property1: Boolean = false,
+    @Kombine val property2: Boolean = true,
+    @Kombine(allPossibleStringParams = ["abc", "cde"]) val property3: String,
+    @Kombine(allPossibleDoubleParams = [5.0, 110.0]) val property4: Double,
+    @Kombine(allPossibleUIntParams = [1u, 2u]) val property5: UInt = 2u,
+    @Kombine(allPossibleUShortParams = [3u, 5u]) val property6: UShort,
+    @Kombine(allPossibleUShortParams = [1u, 2u]) val property7: UShort,
+    @Kombine(
+        allPossibleCharParams = ['5'],
+        allPossibleDoubleParams = [5.0, 110.0, 71.0]
+    ) val property8: Boolean,
+    @Kombine(allPossibleIntParams = [1, 2, 3]) val property9: Int = 3,
+    @Kombine(allPossibleCharParams = ['5']) val property10: Char,
+)

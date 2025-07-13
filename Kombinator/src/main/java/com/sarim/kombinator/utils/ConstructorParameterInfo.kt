@@ -8,6 +8,7 @@ import com.squareup.kotlinpoet.TypeName
 data class ConstructorParameterInfo(
     val name: String,
     val type: TypeName,
+    val hasDefaultValue: Boolean,
     val ksParameter: KSValueParameter,
     val parameterAnnotation: KSAnnotation? = null,
     val isBoolean: Boolean = false,

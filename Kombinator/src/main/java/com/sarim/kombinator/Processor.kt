@@ -112,6 +112,7 @@ class Processor(
                 ConstructorParameterInfo(
                     name = name,
                     type = type,
+                    hasDefaultValue = ksParam.hasDefault,
                     ksParameter = ksParam,
                     parameterAnnotation = parameterKombineAnnotation,
                     isBoolean = type == BOOLEAN,
@@ -139,11 +140,11 @@ class Processor(
 
             val combinableParameterGroups = mutableListOf<Pair<ConstructorParameterInfo, List<Any>>>()
 
-            constructorParameters.filter { it.isBoolean }.forEach {
+            constructorParameters.filter { it.isBoolean && !it.hasDefaultValue }.forEach {
                 combinableParameterGroups.add(it to listOf(false, true))
             }
 
-            constructorParameters.filter { it.isEnum && it.enumClassDeclaration != null }.forEach { paramInfo ->
+            constructorParameters.filter { it.isEnum && it.enumClassDeclaration != null && !it.hasDefaultValue }.forEach { paramInfo ->
                 val enumClassDeclaration = paramInfo.enumClassDeclaration
                 if (enumClassDeclaration == null) {
                     logger.error("Enum parameter '${paramInfo.name}' in $originalClassNameString is missing its class declaration.", paramInfo.ksParameter)

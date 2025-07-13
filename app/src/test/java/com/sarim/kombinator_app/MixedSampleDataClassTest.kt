@@ -2,6 +2,7 @@ package com.sarim.kombinator_app
 
 import com.google.common.truth.Truth.assertThat
 import com.sarim.kombinator_app.sample.MixedSampleDataClassAllParamsAnnotatedCombinations
+import com.sarim.kombinator_app.sample.MixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValueCombinations
 import com.sarim.kombinator_app.sample.MixedSampleDataClassCombinations
 import com.sarim.kombinator_app.sample.MixedSampleDataClassSomeParamsAnnotatedCombinations
 import com.sarim.kombinator_app.sample.MixedSampleDataClassWithEnumsSomeParamsAnnotatedCombinations
@@ -74,7 +75,7 @@ class MixedSampleDataClassTest {
     }
 
     @Test
-    fun testMixedSampleDataClassAllParamsAnnotatedClassLevelAnnotationPresentCombinations() {
+    fun testMixedSampleDataClassAllParamsAnnotatedCombinations() {
         val allItemsAsList =
             MixedSampleDataClassAllParamsAnnotatedCombinations.getAllCombinations()
         val allItemsAsSet = MixedSampleDataClassAllParamsAnnotatedCombinations.getAllCombinations().toSet()
@@ -127,6 +128,62 @@ class MixedSampleDataClassTest {
         assertThat(
             allItemsAsList.filter { it.property5 == 2u }.size
         ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property6 == 3u.toUShort() }.size
+        ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property6 == 5u.toUShort() }.size
+        ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property7 == 1u.toUShort() }.size
+        ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property7 == 2u.toUShort() }.size
+        ).isIn(0 until allItemsAsList.size)
+    }
+
+    @Test
+    fun testMixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValueCombinations() {
+        val allItemsAsList =
+            MixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValueCombinations.getAllCombinations()
+        val allItemsAsSet = MixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValueCombinations.getAllCombinations().toSet()
+        assertThat(allItemsAsList.size).isEqualTo(allItemsAsSet.size)
+        assertThat(
+            allItemsAsList.filter { !it.property1 }.size
+        ).isEqualTo(allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property2 }.size
+        ).isEqualTo(allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { !it.property2 }.size
+        ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property8 }.size
+        ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { !it.property8 }.size
+        ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property3 == "abc" }.size
+        ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property3 == "cde" }.size
+        ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property10 == '5' }.size
+        ).isEqualTo(allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property9 == 3 }.size
+        ).isEqualTo(allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property4 == 5.0 }.size
+        ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property4 == 110.0 }.size
+        ).isIn(0 until allItemsAsList.size)
+        assertThat(
+            allItemsAsList.filter { it.property5 == 2u }.size
+        ).isEqualTo(allItemsAsList.size)
         assertThat(
             allItemsAsList.filter { it.property6 == 3u.toUShort() }.size
         ).isIn(0 until allItemsAsList.size)
