@@ -42,6 +42,7 @@ data class ConstructorParameterInfo(
     val name: String,
     val type: TypeName,
     val ksParameter: KSValueParameter,
+    val parameterAnnotation: KSAnnotation? = null,
     val isBoolean: Boolean = false,
     val isString: Boolean = false,
     val isInt: Boolean = false,
@@ -142,86 +143,16 @@ class Processor(
         }
 
         override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
-            val annotation = classDeclaration.annotations.firstOrNull {
+            val classLevelAnnotation = classDeclaration.annotations.firstOrNull { // Renamed for clarity
                 it.annotationType.resolve().declaration.qualifiedName?.asString() == annotationClassQualifiedName
             }
 
-            if (annotation == null) {
+            if (classLevelAnnotation == null) {
                 logger.warn(
                     "Annotation Kombine not found on ${classDeclaration.simpleName.asString()}",
                     classDeclaration
                 )
-                return
             }
-
-            val allPossibleStringParams = readAnnotationArrayArgument(annotation, "allPossibleStringParams", "String") { item, _ -> item as? String }
-            val allPossibleIntParams = readAnnotationArrayArgument(annotation, "allPossibleIntParams", "Int") { item, _ -> (item as? Number)?.toInt() }
-            val allPossibleFloatParams = readAnnotationArrayArgument(annotation, "allPossibleFloatParams", "Float") { item, _ -> (item as? Number)?.toFloat() }
-            val allPossibleDoubleParams = readAnnotationArrayArgument(annotation, "allPossibleDoubleParams", "Double") { item, _ -> (item as? Number)?.toDouble() }
-            val allPossibleLongParams = readAnnotationArrayArgument(annotation, "allPossibleLongParams", "Long") { item, _ -> (item as? Number)?.toLong() }
-            val allPossibleByteParams = readAnnotationArrayArgument(annotation, "allPossibleByteParams", "Byte") { item, _ -> (item as? Number)?.toByte() }
-            val allPossibleCharParams = readAnnotationArrayArgument(annotation, "allPossibleCharParams", "Char") { item, _ -> item as? Char }
-            val allPossibleShortParams = readAnnotationArrayArgument(annotation, "allPossibleShortParams", "Short") { item, _ -> (item as? Number)?.toShort() }
-
-            val allPossibleUByteParams = readAnnotationArrayArgument(annotation, "allPossibleUByteParams", "UByte") { item, l ->
-                when (item) {
-                    is UByte -> item
-                    is Byte -> item.toUByte()
-                    is Number -> item.toLong().toUByte()
-                    else -> {
-                        l.warn("Cannot cast ${item::class.qualifiedName} to UByte for 'allPossibleUByteParams'")
-                        null
-                    }
-                }
-            }
-            val allPossibleUShortParams = readAnnotationArrayArgument(annotation, "allPossibleUShortParams", "UShort") { item, l ->
-                when (item) {
-                    is UShort -> item
-                    is Short -> item.toUShort()
-                    is Number -> item.toLong().toUShort()
-                    else -> {
-                        logger.warn("Cannot cast ${item::class.qualifiedName} to UShort for 'allPossibleUShortParams'")
-                        null
-                    }
-                }
-            }
-            val allPossibleUIntParams = readAnnotationArrayArgument(annotation, "allPossibleUIntParams", "UInt") { item, l ->
-                when (item) {
-                    is UInt -> item
-                    is Int -> item.toUInt()
-                    is Number -> item.toLong().toUInt()
-                    else -> {
-                        logger.warn("Cannot cast ${item::class.qualifiedName} to UInt for 'allPossibleUIntParams'")
-                        null
-                    }
-                }
-            }
-            val allPossibleULongParams = readAnnotationArrayArgument(annotation, "allPossibleULongParams", "ULong") { item, l ->
-                when (item) {
-                    is ULong -> item.toLong()
-                    is Long -> item.toULong()
-                    is Number -> item.toLong().toULong() // Ensure it's a Long first
-                    else -> {
-                        logger.warn("Cannot cast ${item::class.qualifiedName} to ULong for 'allPossibleULongParams'")
-                        null
-                    }
-                }
-            }
-
-            val providedParamLists = mapOf(
-                STRING to allPossibleStringParams,
-                INT to allPossibleIntParams,
-                FLOAT to allPossibleFloatParams,
-                DOUBLE to allPossibleDoubleParams,
-                LONG to allPossibleLongParams,
-                BYTE to allPossibleByteParams,
-                CHAR to allPossibleCharParams,
-                SHORT to allPossibleShortParams,
-                U_BYTE to allPossibleUByteParams,
-                U_SHORT to allPossibleUShortParams,
-                U_INT to allPossibleUIntParams,
-                U_LONG to allPossibleULongParams
-            )
 
             val originalClassNameString = classDeclaration.simpleName.asString()
             val originalClassTypeName = classDeclaration.asType(emptyList()).toTypeName()
@@ -240,10 +171,16 @@ class Processor(
                     return@mapNotNull null
                 }
                 val type = ksParam.type.resolve().toTypeName()
+
+                val parameterKombineAnnotation = ksParam.annotations.firstOrNull {
+                    it.annotationType.resolve().declaration.qualifiedName?.asString() == annotationClassQualifiedName
+                }
+
                 ConstructorParameterInfo(
                     name = name,
                     type = type,
                     ksParameter = ksParam,
+                    parameterAnnotation = parameterKombineAnnotation,
                     isBoolean = type == BOOLEAN,
                     isString = type == STRING,
                     isInt = type == INT,
@@ -265,30 +202,111 @@ class Processor(
                 return
             }
 
-            val booleanParams = constructorParameters.filter { it.isBoolean }
-            val typedParamsToCombine = constructorParameters.filter { param ->
-                !param.isBoolean && providedParamLists[param.type]?.isNotEmpty() == true
+            val combinableParameterGroups = mutableListOf<Pair<ConstructorParameterInfo, List<Any>>>()
+
+            constructorParameters.filter { it.isBoolean }.forEach {
+                combinableParameterGroups.add(it to listOf(false, true))
             }
 
-            if (booleanParams.isEmpty() && typedParamsToCombine.isEmpty()) {
-                logger.warn("No parameters found in $originalClassNameString to generate combinations from @Kombine.", classDeclaration)
-                return
-            }
+            constructorParameters.filter { !it.isBoolean }.forEach { paramInfo ->
+                val annotationToUse = paramInfo.parameterAnnotation ?: classLevelAnnotation
+                var valuesForParam: List<Any>? = null
+                var sourceOfValues = "unknown"
 
-            constructorParameters.forEach { param ->
-                if (!param.isBoolean && param.type in providedParamLists.keys && providedParamLists[param.type]?.isEmpty() == true) {
-                    val annotationParamName = providedParamLists.entries.firstOrNull { it.key == param.type }?.let { entry ->
-                        "allPossible${param.type.toString().split('.').last().replaceFirstChar { if (it.isLowerCase()) it.titlecase() else it.toString() }}Params"
-                    } ?: "the corresponding array in @Kombine"
+                if (annotationToUse != null) {
+                    sourceOfValues = if (paramInfo.parameterAnnotation != null) "parameter-level @Kombine" else "class-level @Kombine"
+                    println("paramInfo = $paramInfo")
+                    println("sourceOfValues = $sourceOfValues")
+                    valuesForParam = when (paramInfo.type) {
+                        STRING -> readAnnotationArrayArgument(annotationToUse, "allPossibleStringParams", "String") { item, _ -> item as? String }
+                        INT -> readAnnotationArrayArgument(annotationToUse, "allPossibleIntParams", "Int") { item, _ -> (item as? Number)?.toInt() }
+                        FLOAT -> readAnnotationArrayArgument(annotationToUse, "allPossibleFloatParams", "Float") { item, _ -> (item as? Number)?.toFloat() }
+                        DOUBLE -> readAnnotationArrayArgument(annotationToUse, "allPossibleDoubleParams", "Double") { item, _ -> (item as? Number)?.toDouble() }
+                        LONG -> readAnnotationArrayArgument(annotationToUse, "allPossibleLongParams", "Long") { item, _ -> (item as? Number)?.toLong() }
+                        BYTE -> readAnnotationArrayArgument(annotationToUse, "allPossibleByteParams", "Byte") { item, _ -> (item as? Number)?.toByte() }
+                        CHAR -> readAnnotationArrayArgument(annotationToUse, "allPossibleCharParams", "Char") { item, _ -> item as? Char }
+                        SHORT -> readAnnotationArrayArgument(annotationToUse, "allPossibleShortParams", "Short") { item, _ -> (item as? Number)?.toShort() }
+                        U_BYTE -> readAnnotationArrayArgument(annotationToUse, "allPossibleUByteParams", "UByte") { item, l ->
+                            when (item) {
+                                is UByte -> item
+                                is Byte -> item.toUByte()
+                                is Number -> item.toLong().toUByte()
+                                else -> { l.warn("Cannot cast ${item::class.qualifiedName} to UByte for 'allPossibleUByteParams' from $sourceOfValues"); null }
+                            }
+                        }
+                        U_SHORT -> readAnnotationArrayArgument(annotationToUse, "allPossibleUShortParams", "UShort") { item, l ->
+                            when (item) {
+                                is UShort -> item
+                                is Short -> item.toUShort()
+                                is Number -> item.toLong().toUShort()
+                                else -> { l.warn("Cannot cast ${item::class.qualifiedName} to UShort for 'allPossibleUShortParams' from $sourceOfValues"); null }
+                            }
+                        }
+                        U_INT -> readAnnotationArrayArgument(annotationToUse, "allPossibleUIntParams", "UInt") { item, l ->
+                            when (item) {
+                                is UInt -> item
+                                is Int -> item.toUInt()
+                                is Number -> item.toLong().toUInt()
+                                else -> { l.warn("Cannot cast ${item::class.qualifiedName} to UInt for 'allPossibleUIntParams' from $sourceOfValues"); null }
+                            }
+                        }
+                        U_LONG -> readAnnotationArrayArgument(annotationToUse, "allPossibleULongParams", "ULong") { item, l ->
+                            when (item) {
+                                is ULong -> item
+                                is Long -> item.toULong()
+                                is Number -> item.toLong().toULong()
+                                else -> { l.warn("Cannot cast ${item::class.qualifiedName} to ULong for 'allPossibleULongParams' from $sourceOfValues"); null }
+                            }
+                        }
+                        else -> null
+                    }
+                }
 
+                if (valuesForParam != null && valuesForParam.isNotEmpty()) {
+                    combinableParameterGroups.add(paramInfo to valuesForParam)
+                } else if (valuesForParam != null) {
+                    val argName = when(paramInfo.type) {
+                        STRING -> "allPossibleStringParams"
+                        INT -> "allPossibleIntParams"
+                        FLOAT -> "allPossibleFloatParams"
+                        DOUBLE -> "allPossibleDoubleParams"
+                        LONG -> "allPossibleLongParams"
+                        BYTE -> "allPossibleByteParams"
+                        CHAR -> "allPossibleCharParams"
+                        SHORT -> "allPossibleShortParams"
+                        U_BYTE -> "allPossibleUByteParams"
+                        U_SHORT -> "allPossibleUShortParams"
+                        U_INT -> "allPossibleUIntParams"
+                        U_LONG -> "allPossibleULongParams"
+                        else -> "unknown arg name!"
+                    }
                     logger.error(
-                        "Class $originalClassNameString has a '${param.name}: ${param.type}' parameter, " +
-                                "but $annotationParamName is empty in @Kombine. Provide values to combine.",
-                        classDeclaration
+                        "Parameter '${paramInfo.name}: ${paramInfo.type}' in $originalClassNameString uses $sourceOfValues, " +
+                                "but its '$argName' is empty. Provide values to combine or remove the annotation/parameter.",
+                        paramInfo.ksParameter
                     )
                 }
             }
 
+            val hasAnyKombineAnnotationWithPotentialValues = classLevelAnnotation != null || constructorParameters.any { it.parameterAnnotation != null }
+
+            if (combinableParameterGroups.isEmpty()) {
+                if (hasAnyKombineAnnotationWithPotentialValues) {
+                    logger.warn(
+                        "No effective parameter combinations to generate for $originalClassNameString. " +
+                                "This might be because all provided value lists in @Kombine (class or parameter level) are empty, " +
+                                "or parameters are not of supported types for combination.",
+                        classDeclaration
+                    )
+                } else {
+                    logger.warn(
+                        "No parameters found in $originalClassNameString to generate combinations from @Kombine. " +
+                                "Ensure @Kombine is used on the class or on individual parameters with values for supported types.",
+                        classDeclaration
+                    )
+                }
+                return
+            }
 
             val generatedObjectName = "${originalClassNameString}Combinations"
             val fileBuilder = FileSpec.builder(packageName, generatedObjectName)
@@ -301,28 +319,9 @@ class Processor(
             val generatedPropertyNames = mutableListOf<String>()
             var instanceCounter = 1
 
-            val combinableParameterGroups = mutableListOf<Pair<ConstructorParameterInfo, List<Any>>>()
-            if (booleanParams.isNotEmpty()) {
-                booleanParams.forEach {
-                    combinableParameterGroups.add(it to listOf(false, true))
-                }
-            }
-            typedParamsToCombine.forEach { paramInfo ->
-                providedParamLists[paramInfo.type]?.let { values ->
-                    if (values.isNotEmpty()) {
-                        combinableParameterGroups.add(paramInfo to values)
-                    }
-                }
-            }
-
-            if (combinableParameterGroups.isEmpty()) {
-                logger.warn("No effective parameter combinations to generate for $originalClassNameString.", classDeclaration)
-                return
-            }
-
             val totalCombinations = combinableParameterGroups.fold(1) { acc, group -> acc * group.second.size }
-            if (totalCombinations == 0 && (booleanParams.isNotEmpty() || typedParamsToCombine.isNotEmpty())) {
-                logger.warn("Total combinations is 0, likely due to an empty list of provided values for a typed parameter in $originalClassNameString.", classDeclaration)
+            if (totalCombinations == 0 && combinableParameterGroups.isNotEmpty()) {
+                logger.warn("Total combinations is 0, likely due to an empty list of provided values for a typed parameter in $originalClassNameString, despite groups being identified.", classDeclaration)
                 return
             }
 

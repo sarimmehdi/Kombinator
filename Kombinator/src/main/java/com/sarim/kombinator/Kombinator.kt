@@ -1,6 +1,6 @@
 package com.sarim.kombinator
 
-@Target(AnnotationTarget.CLASS, AnnotationTarget.PROPERTY)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.VALUE_PARAMETER)
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
 annotation class Kombine @OptIn(ExperimentalUnsignedTypes::class) constructor(
