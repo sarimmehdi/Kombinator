@@ -3,7 +3,8 @@ import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 plugins {
     id("java-library")
     alias(libs.plugins.jetbrainsKotlinJvmPlugin)
-    alias(libs.plugins.ktlint)
+    alias(libs.plugins.ktlintPlugin)
+    alias(libs.plugins.detektPlugin)
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_21

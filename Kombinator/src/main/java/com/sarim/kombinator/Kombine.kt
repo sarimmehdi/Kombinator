@@ -4,6 +4,7 @@ package com.sarim.kombinator
 @Retention(AnnotationRetention.SOURCE)
 @MustBeDocumented
 annotation class Kombine
+    @Suppress("LongParameterList")
     @OptIn(ExperimentalUnsignedTypes::class)
     constructor(
         val allPossibleStringParams: Array<String> = [],
