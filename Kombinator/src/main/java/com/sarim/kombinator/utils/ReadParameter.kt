@@ -22,7 +22,7 @@ fun readParameter(
     originalClassNameString: String,
     logger: KSPLogger
 ) {
-    constructorParameters.filter { !it.isBoolean && !it.isEnum && it.enumClassDeclaration == null }.forEach { paramInfo ->
+    constructorParameters.filter { !it.isBoolean && !it.isEnum && it.enumClassDeclaration == null && !it.hasDefaultValue }.forEach { paramInfo ->
         val annotationToUse = paramInfo.parameterAnnotation ?: classLevelAnnotation
         var valuesForParam: List<Any>? = null
         var sourceOfValues = "unknown"
