@@ -1,0 +1,59 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build_app:
+    name: Build Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4.7.1
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build debug APK
+        run: ./gradlew assembleDebug
+
+  test:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4.7.1
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+          cache: 'gradle'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Run unit tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+           name: unit-test-results
+           path: app/build/reports/tests/testDebugUnitTest/

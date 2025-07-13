@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplicationPlugin)
     alias(libs.plugins.kotlinAndroidPlugin)
-    alias(libs.plugins.kotlinComposePlugin)
     alias(libs.plugins.kspPlugin)
 }
 
@@ -37,26 +36,13 @@ android {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
         }
     }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
 
-    implementation(libs.androidxCoreKtxLibrary)
-    implementation(libs.androidxLifecycleRuntimeKtxLibrary)
-    implementation(libs.androidxActivityComposeLibrary)
-    implementation(platform(libs.androidxComposeBomLibrary))
-    implementation(libs.androidxUiLibrary)
-    implementation(libs.androidxUiGraphicsLibrary)
-    implementation(libs.androidxUiToolingPreviewLibrary)
-    implementation(libs.androidxMaterial3Library)
     testImplementation(libs.junitLibrary)
     testImplementation(libs.truthLibrary)
     testImplementation(libs.assertJLibrary)
-    debugImplementation(libs.androidxUiToolingLibrary)
-    debugImplementation(libs.androidxUiTestManifestLibrary)
     implementation(project(":Kombinator"))
     ksp(project(":Kombinator"))
 }
