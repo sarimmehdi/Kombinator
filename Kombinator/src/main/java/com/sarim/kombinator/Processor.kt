@@ -96,8 +96,7 @@ class Processor(
         private fun <T> readAnnotationArrayArgument(
             annotation: KSAnnotation,
             argumentName: String,
-            expectedItemTypeName: String, // For logging
-            targetTypeName: TypeName, // The actual KotlinPoet TypeName we want
+            expectedItemTypeName: String,
             caster: (Any, KSPLogger) -> T?
         ): List<T> {
             val argument = annotation.arguments.firstOrNull { it.name?.asString() == argumentName }
@@ -155,16 +154,16 @@ class Processor(
                 return
             }
 
-            val allPossibleStringParams = readAnnotationArrayArgument(annotation, "allPossibleStringParams", "String", STRING) { item, _ -> item as? String }
-            val allPossibleIntParams = readAnnotationArrayArgument(annotation, "allPossibleIntParams", "Int", INT) { item, _ -> (item as? Number)?.toInt() }
-            val allPossibleFloatParams = readAnnotationArrayArgument(annotation, "allPossibleFloatParams", "Float", FLOAT) { item, _ -> (item as? Number)?.toFloat() }
-            val allPossibleDoubleParams = readAnnotationArrayArgument(annotation, "allPossibleDoubleParams", "Double", DOUBLE) { item, _ -> (item as? Number)?.toDouble() }
-            val allPossibleLongParams = readAnnotationArrayArgument(annotation, "allPossibleLongParams", "Long", LONG) { item, _ -> (item as? Number)?.toLong() }
-            val allPossibleByteParams = readAnnotationArrayArgument(annotation, "allPossibleByteParams", "Byte", BYTE) { item, _ -> (item as? Number)?.toByte() }
-            val allPossibleCharParams = readAnnotationArrayArgument(annotation, "allPossibleCharParams", "Char", CHAR) { item, _ -> item as? Char }
-            val allPossibleShortParams = readAnnotationArrayArgument(annotation, "allPossibleShortParams", "Short", SHORT) { item, _ -> (item as? Number)?.toShort() }
+            val allPossibleStringParams = readAnnotationArrayArgument(annotation, "allPossibleStringParams", "String") { item, _ -> item as? String }
+            val allPossibleIntParams = readAnnotationArrayArgument(annotation, "allPossibleIntParams", "Int") { item, _ -> (item as? Number)?.toInt() }
+            val allPossibleFloatParams = readAnnotationArrayArgument(annotation, "allPossibleFloatParams", "Float") { item, _ -> (item as? Number)?.toFloat() }
+            val allPossibleDoubleParams = readAnnotationArrayArgument(annotation, "allPossibleDoubleParams", "Double") { item, _ -> (item as? Number)?.toDouble() }
+            val allPossibleLongParams = readAnnotationArrayArgument(annotation, "allPossibleLongParams", "Long") { item, _ -> (item as? Number)?.toLong() }
+            val allPossibleByteParams = readAnnotationArrayArgument(annotation, "allPossibleByteParams", "Byte") { item, _ -> (item as? Number)?.toByte() }
+            val allPossibleCharParams = readAnnotationArrayArgument(annotation, "allPossibleCharParams", "Char") { item, _ -> item as? Char }
+            val allPossibleShortParams = readAnnotationArrayArgument(annotation, "allPossibleShortParams", "Short") { item, _ -> (item as? Number)?.toShort() }
 
-            val allPossibleUByteParams = readAnnotationArrayArgument(annotation, "allPossibleUByteParams", "UByte", U_BYTE) { item, l ->
+            val allPossibleUByteParams = readAnnotationArrayArgument(annotation, "allPossibleUByteParams", "UByte") { item, l ->
                 when (item) {
                     is UByte -> item
                     is Byte -> item.toUByte()
@@ -175,7 +174,7 @@ class Processor(
                     }
                 }
             }
-            val allPossibleUShortParams = readAnnotationArrayArgument(annotation, "allPossibleUShortParams", "UShort", U_SHORT) { item, l ->
+            val allPossibleUShortParams = readAnnotationArrayArgument(annotation, "allPossibleUShortParams", "UShort") { item, l ->
                 when (item) {
                     is UShort -> item
                     is Short -> item.toUShort()
@@ -186,7 +185,7 @@ class Processor(
                     }
                 }
             }
-            val allPossibleUIntParams = readAnnotationArrayArgument(annotation, "allPossibleUIntParams", "UInt", U_INT) { item, l ->
+            val allPossibleUIntParams = readAnnotationArrayArgument(annotation, "allPossibleUIntParams", "UInt") { item, l ->
                 when (item) {
                     is UInt -> item
                     is Int -> item.toUInt()
@@ -197,7 +196,7 @@ class Processor(
                     }
                 }
             }
-            val allPossibleULongParams = readAnnotationArrayArgument(annotation, "allPossibleULongParams", "ULong", U_LONG) { item, l ->
+            val allPossibleULongParams = readAnnotationArrayArgument(annotation, "allPossibleULongParams", "ULong") { item, l ->
                 when (item) {
                     is ULong -> item.toLong()
                     is Long -> item.toULong()
