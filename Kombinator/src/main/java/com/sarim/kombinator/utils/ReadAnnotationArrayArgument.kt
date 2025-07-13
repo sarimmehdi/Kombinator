@@ -19,7 +19,7 @@ fun <T> readAnnotationArrayArgument(
                 if (item == null) {
                     logger.warn(
                         "Null item found in list for argument '$argumentName' in @${annotation.shortName.asString()}.",
-                        annotation
+                        annotation,
                     )
                     null
                 } else {
@@ -27,8 +27,8 @@ fun <T> readAnnotationArrayArgument(
                     if (castedValue == null) {
                         logger.warn(
                             "Unexpected item type or failed cast in '$argumentName' for @${annotation.shortName.asString()}. " +
-                                    "Expected to be able to convert to $expectedItemTypeName, got ${item::class.qualifiedName} with value '$item'.",
-                            annotation
+                                "Expected to be able to convert to $expectedItemTypeName, got ${item::class.qualifiedName} with value '$item'.",
+                            annotation,
                         )
                         null
                     } else {
@@ -44,8 +44,8 @@ fun <T> readAnnotationArrayArgument(
         else -> {
             logger.warn(
                 "Argument '$argumentName' for @${annotation.shortName.asString()} is not a List. " +
-                        "Found: ${value::class.qualifiedName}.",
-                annotation
+                    "Found: ${value::class.qualifiedName}.",
+                annotation,
             )
             emptyList()
         }

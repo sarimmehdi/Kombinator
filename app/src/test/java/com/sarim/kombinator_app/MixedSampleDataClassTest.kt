@@ -11,7 +11,6 @@ import com.sarim.kombinator_app.sample.SampleEnum2
 import org.junit.Test
 
 class MixedSampleDataClassTest {
-
     @Test
     fun testMixedSampleDataClassCombinations() {
         val allItemsAsList = MixedSampleDataClassCombinations.getAllCombinations()
@@ -25,15 +24,19 @@ class MixedSampleDataClassTest {
         val allItemsAsSet = MixedSampleDataClassSomeParamsAnnotatedCombinations.getAllCombinations().toSet()
         assertThat(allItemsAsList.size).isEqualTo(allItemsAsSet.size)
         assertThat(
-            allItemsAsList.filter {
-                it.property4 == 1.0 || it.property4 == 2.0
-                        || it.property6 == 1u.toUShort() || it.property6 == 2u.toUShort()
-            }.size
+            allItemsAsList
+                .filter {
+                    it.property4 == 1.0 ||
+                        it.property4 == 2.0 ||
+                        it.property6 == 1u.toUShort() ||
+                        it.property6 == 2u.toUShort()
+                }.size,
         ).isEqualTo(0)
         assertThat(
-            allItemsAsList.filter {
-                it.property10 == '5'
-            }.size
+            allItemsAsList
+                .filter {
+                    it.property10 == '5'
+                }.size,
         ).isEqualTo(allItemsAsList.size)
     }
 
@@ -43,34 +46,43 @@ class MixedSampleDataClassTest {
         val allItemsAsSet = MixedSampleDataClassWithEnumsSomeParamsAnnotatedCombinations.getAllCombinations().toSet()
         assertThat(allItemsAsList.size).isEqualTo(allItemsAsSet.size)
         assertThat(
-            allItemsAsList.filter {
-                it.property4 == 1.0 || it.property4 == 2.0
-                        || it.property6 == 1u.toUShort() || it.property6 == 2u.toUShort()
-            }.size
+            allItemsAsList
+                .filter {
+                    it.property4 == 1.0 ||
+                        it.property4 == 2.0 ||
+                        it.property6 == 1u.toUShort() ||
+                        it.property6 == 2u.toUShort()
+                }.size,
         ).isEqualTo(0)
         assertThat(
-            allItemsAsList.filter {
-                it.property10 == '5'
-            }.size
+            allItemsAsList
+                .filter {
+                    it.property10 == '5'
+                }.size,
         ).isEqualTo(allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter {
-                it.property11 == SampleEnum1.TYPE_1 }.size
+            allItemsAsList
+                .filter {
+                    it.property11 == SampleEnum1.TYPE_1
+                }.size,
         ).isEqualTo(allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter {
-                it.property12 == SampleEnum2.TYPE_1
-            }.size
+            allItemsAsList
+                .filter {
+                    it.property12 == SampleEnum2.TYPE_1
+                }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter {
-                it.property12 == SampleEnum2.TYPE_2
-            }.size
+            allItemsAsList
+                .filter {
+                    it.property12 == SampleEnum2.TYPE_2
+                }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter {
-                it.property12 == SampleEnum2.TYPE_3
-            }.size
+            allItemsAsList
+                .filter {
+                    it.property12 == SampleEnum2.TYPE_3
+                }.size,
         ).isIn(0 until allItemsAsList.size)
     }
 
@@ -81,64 +93,64 @@ class MixedSampleDataClassTest {
         val allItemsAsSet = MixedSampleDataClassAllParamsAnnotatedCombinations.getAllCombinations().toSet()
         assertThat(allItemsAsList.size).isEqualTo(allItemsAsSet.size)
         assertThat(
-            allItemsAsList.filter { it.property1 }.size
+            allItemsAsList.filter { it.property1 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { !it.property1 }.size
+            allItemsAsList.filter { !it.property1 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property2 }.size
+            allItemsAsList.filter { it.property2 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { !it.property2 }.size
+            allItemsAsList.filter { !it.property2 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property8 }.size
+            allItemsAsList.filter { it.property8 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { !it.property8 }.size
+            allItemsAsList.filter { !it.property8 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property3 == "abc" }.size
+            allItemsAsList.filter { it.property3 == "abc" }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property3 == "cde" }.size
+            allItemsAsList.filter { it.property3 == "cde" }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property10 == '5' }.size
+            allItemsAsList.filter { it.property10 == '5' }.size,
         ).isEqualTo(allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property9 == 1 }.size
+            allItemsAsList.filter { it.property9 == 1 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property9 == 2 }.size
+            allItemsAsList.filter { it.property9 == 2 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property9 == 3 }.size
+            allItemsAsList.filter { it.property9 == 3 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property4 == 5.0 }.size
+            allItemsAsList.filter { it.property4 == 5.0 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property4 == 110.0 }.size
+            allItemsAsList.filter { it.property4 == 110.0 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property5 == 1u }.size
+            allItemsAsList.filter { it.property5 == 1u }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property5 == 2u }.size
+            allItemsAsList.filter { it.property5 == 2u }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property6 == 3u.toUShort() }.size
+            allItemsAsList.filter { it.property6 == 3u.toUShort() }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property6 == 5u.toUShort() }.size
+            allItemsAsList.filter { it.property6 == 5u.toUShort() }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property7 == 1u.toUShort() }.size
+            allItemsAsList.filter { it.property7 == 1u.toUShort() }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property7 == 2u.toUShort() }.size
+            allItemsAsList.filter { it.property7 == 2u.toUShort() }.size,
         ).isIn(0 until allItemsAsList.size)
     }
 
@@ -149,52 +161,52 @@ class MixedSampleDataClassTest {
         val allItemsAsSet = MixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValueCombinations.getAllCombinations().toSet()
         assertThat(allItemsAsList.size).isEqualTo(allItemsAsSet.size)
         assertThat(
-            allItemsAsList.filter { !it.property1 }.size
+            allItemsAsList.filter { !it.property1 }.size,
         ).isEqualTo(allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property2 }.size
+            allItemsAsList.filter { it.property2 }.size,
         ).isEqualTo(allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { !it.property2 }.size
+            allItemsAsList.filter { !it.property2 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property8 }.size
+            allItemsAsList.filter { it.property8 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { !it.property8 }.size
+            allItemsAsList.filter { !it.property8 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property3 == "abc" }.size
+            allItemsAsList.filter { it.property3 == "abc" }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property3 == "cde" }.size
+            allItemsAsList.filter { it.property3 == "cde" }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property10 == '5' }.size
+            allItemsAsList.filter { it.property10 == '5' }.size,
         ).isEqualTo(allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property9 == 3 }.size
+            allItemsAsList.filter { it.property9 == 3 }.size,
         ).isEqualTo(allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property4 == 5.0 }.size
+            allItemsAsList.filter { it.property4 == 5.0 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property4 == 110.0 }.size
+            allItemsAsList.filter { it.property4 == 110.0 }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property5 == 2u }.size
+            allItemsAsList.filter { it.property5 == 2u }.size,
         ).isEqualTo(allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property6 == 3u.toUShort() }.size
+            allItemsAsList.filter { it.property6 == 3u.toUShort() }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property6 == 5u.toUShort() }.size
+            allItemsAsList.filter { it.property6 == 5u.toUShort() }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property7 == 1u.toUShort() }.size
+            allItemsAsList.filter { it.property7 == 1u.toUShort() }.size,
         ).isIn(0 until allItemsAsList.size)
         assertThat(
-            allItemsAsList.filter { it.property7 == 2u.toUShort() }.size
+            allItemsAsList.filter { it.property7 == 2u.toUShort() }.size,
         ).isIn(0 until allItemsAsList.size)
     }
 }

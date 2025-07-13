@@ -3,26 +3,25 @@ package com.sarim.kombinator_app
 import com.google.common.truth.Truth.assertThat
 import com.sarim.kombinator_app.sample.SampleDataClass1IntWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass1IntWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass1IntWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass1IntWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass1IntWithIntParams
 import com.sarim.kombinator_app.sample.SampleDataClass1IntWithIntParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass1IntWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass1IntWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2IntsWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass2IntsWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass2IntsWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass2IntsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2IntsWithIntParams
 import com.sarim.kombinator_app.sample.SampleDataClass2IntsWithIntParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass2IntsWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass2IntsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3IntsWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass3IntsWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass3IntsWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass3IntsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3IntsWithIntParams
 import com.sarim.kombinator_app.sample.SampleDataClass3IntsWithIntParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass3IntsWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass3IntsWithSomeParamsCombinations
 import org.junit.Test
 
 class SampleDataClassIntTest {
-
     @Test
     fun testSampleDataClass1IntWithIntParamsCombinations() {
         assertThat(SampleDataClass1IntWithIntParamsCombinations.getAllCombinations().size).isEqualTo(2)
@@ -35,8 +34,8 @@ class SampleDataClassIntTest {
                     SampleDataClass1IntWithIntParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -62,8 +61,8 @@ class SampleDataClassIntTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -113,8 +112,8 @@ class SampleDataClassIntTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -130,8 +129,8 @@ class SampleDataClassIntTest {
                     SampleDataClass1IntWithAllParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -157,8 +156,8 @@ class SampleDataClassIntTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -208,8 +207,8 @@ class SampleDataClassIntTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -225,8 +224,8 @@ class SampleDataClassIntTest {
                     SampleDataClass1IntWithSomeParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -252,8 +251,8 @@ class SampleDataClassIntTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -303,8 +302,8 @@ class SampleDataClassIntTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }

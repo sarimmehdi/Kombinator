@@ -3,14 +3,14 @@ package com.sarim.kombinator_app.sample
 import com.sarim.kombinator.Kombine
 
 @Kombine(
-    allPossibleUByteParams = [1u, 2u]
+    allPossibleUByteParams = [1u, 2u],
 )
 data class SampleDataClass1UByteWithUByteParams(
     val property1: UByte,
 )
 
 @Kombine(
-    allPossibleUByteParams = [1u, 2u]
+    allPossibleUByteParams = [1u, 2u],
 )
 data class SampleDataClass2UBytesWithUByteParams(
     val property1: UByte,
@@ -18,7 +18,7 @@ data class SampleDataClass2UBytesWithUByteParams(
 )
 
 @Kombine(
-    allPossibleUByteParams = [1u, 2u]
+    allPossibleUByteParams = [1u, 2u],
 )
 data class SampleDataClass3UBytesWithUByteParams(
     val property1: UByte,

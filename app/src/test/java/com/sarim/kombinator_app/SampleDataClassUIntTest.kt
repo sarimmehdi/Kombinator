@@ -22,7 +22,6 @@ import com.sarim.kombinator_app.sample.SampleDataClass3UIntsWithUIntParamsCombin
 import org.junit.Test
 
 class SampleDataClassUIntTest {
-
     @Test
     fun testSampleDataClass1UIntWithUIntParamsCombinations() {
         assertThat(SampleDataClass1UIntWithUIntParamsCombinations.getAllCombinations().size).isEqualTo(2)
@@ -35,8 +34,8 @@ class SampleDataClassUIntTest {
                     SampleDataClass1UIntWithUIntParams(
                         property1 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -62,8 +61,8 @@ class SampleDataClassUIntTest {
                         property1 = 2u,
                         property2 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -113,8 +112,8 @@ class SampleDataClassUIntTest {
                         property2 = 2u,
                         property3 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -130,8 +129,8 @@ class SampleDataClassUIntTest {
                     SampleDataClass1UIntWithAllParams(
                         property1 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -157,8 +156,8 @@ class SampleDataClassUIntTest {
                         property1 = 2u,
                         property2 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -208,8 +207,8 @@ class SampleDataClassUIntTest {
                         property2 = 2u,
                         property3 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -225,8 +224,8 @@ class SampleDataClassUIntTest {
                     SampleDataClass1UIntWithSomeParams(
                         property1 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -252,8 +251,8 @@ class SampleDataClassUIntTest {
                         property1 = 2u,
                         property2 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -303,8 +302,8 @@ class SampleDataClassUIntTest {
                         property2 = 2u,
                         property3 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }

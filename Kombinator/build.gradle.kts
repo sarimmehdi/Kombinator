@@ -1,6 +1,9 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     id("java-library")
     alias(libs.plugins.jetbrainsKotlinJvmPlugin)
+    alias(libs.plugins.ktlint)
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -16,4 +19,13 @@ dependencies {
     implementation(libs.kotlinPoetLibrary)
     implementation(libs.kotlinPoetKspLibrary)
     implementation(libs.kspApiLibrary)
+}
+
+ktlint {
+    ignoreFailures = false
+    reporters {
+        reporter(ReporterType.PLAIN)
+        reporter(ReporterType.CHECKSTYLE)
+        reporter(ReporterType.SARIF)
+    }
 }

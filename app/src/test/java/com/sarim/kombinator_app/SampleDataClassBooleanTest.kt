@@ -94,7 +94,6 @@ import com.sarim.kombinator_app.sample.SampleDataClass3BooleansWithUShortParamsC
 import org.junit.Test
 
 class SampleDataClassBooleanTest {
-
     @Test
     fun testSampleDataClass1BooleanCombinations() {
         assertThat(SampleDataClass1BooleanCombinations.getAllCombinations().size).isEqualTo(2)
@@ -107,8 +106,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1Boolean(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -134,8 +133,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -185,8 +184,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -202,8 +201,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithStringParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -229,8 +228,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -280,8 +279,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -297,8 +296,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithIntParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -324,8 +323,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -375,8 +374,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -392,8 +391,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithFloatParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -419,8 +418,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -470,8 +469,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -487,8 +486,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithDoubleParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -514,8 +513,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -565,8 +564,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -582,8 +581,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithLongParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -609,8 +608,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -660,8 +659,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -677,8 +676,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithByteParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -704,8 +703,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -755,8 +754,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -772,8 +771,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithCharParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -799,8 +798,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -850,8 +849,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -867,8 +866,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithShortParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -894,8 +893,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -945,8 +944,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -962,8 +961,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithUByteParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -989,8 +988,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1040,8 +1039,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1057,8 +1056,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithUShortParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1084,8 +1083,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1135,8 +1134,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1152,8 +1151,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithUIntParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1179,8 +1178,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1230,8 +1229,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1247,8 +1246,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithULongParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1274,8 +1273,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1325,8 +1324,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1342,8 +1341,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithAllParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1369,8 +1368,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1420,8 +1419,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1437,8 +1436,8 @@ class SampleDataClassBooleanTest {
                     SampleDataClass1BooleanWithSomeParams(
                         property1 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1464,8 +1463,8 @@ class SampleDataClassBooleanTest {
                         property1 = false,
                         property2 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -1515,8 +1514,8 @@ class SampleDataClassBooleanTest {
                         property2 = false,
                         property3 = false,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }

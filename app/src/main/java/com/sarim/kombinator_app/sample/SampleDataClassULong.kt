@@ -3,14 +3,14 @@ package com.sarim.kombinator_app.sample
 import com.sarim.kombinator.Kombine
 
 @Kombine(
-    allPossibleULongParams = [1u, 2u]
+    allPossibleULongParams = [1u, 2u],
 )
 data class SampleDataClass1ULongWithULongParams(
     val property1: ULong,
 )
 
 @Kombine(
-    allPossibleULongParams = [1u, 2u]
+    allPossibleULongParams = [1u, 2u],
 )
 data class SampleDataClass2ULongsWithULongParams(
     val property1: ULong,
@@ -18,7 +18,7 @@ data class SampleDataClass2ULongsWithULongParams(
 )
 
 @Kombine(
-    allPossibleULongParams = [1u, 2u]
+    allPossibleULongParams = [1u, 2u],
 )
 data class SampleDataClass3ULongsWithULongParams(
     val property1: ULong,

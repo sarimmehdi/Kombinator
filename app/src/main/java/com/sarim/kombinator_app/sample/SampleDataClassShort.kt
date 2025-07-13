@@ -3,14 +3,14 @@ package com.sarim.kombinator_app.sample
 import com.sarim.kombinator.Kombine
 
 @Kombine(
-    allPossibleShortParams = [1, 2]
+    allPossibleShortParams = [1, 2],
 )
 data class SampleDataClass1ShortWithShortParams(
     val property1: Short,
 )
 
 @Kombine(
-    allPossibleShortParams = [1, 2]
+    allPossibleShortParams = [1, 2],
 )
 data class SampleDataClass2ShortsWithShortParams(
     val property1: Short,
@@ -18,7 +18,7 @@ data class SampleDataClass2ShortsWithShortParams(
 )
 
 @Kombine(
-    allPossibleShortParams = [1, 2]
+    allPossibleShortParams = [1, 2],
 )
 data class SampleDataClass3ShortsWithShortParams(
     val property1: Short,

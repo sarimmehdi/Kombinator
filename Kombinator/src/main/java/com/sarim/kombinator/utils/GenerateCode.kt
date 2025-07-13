@@ -23,17 +23,22 @@ fun generateCode(
     packageName: String,
     generatedObjectName: String,
     originalClassNameString: String,
-    logger: KSPLogger
+    logger: KSPLogger,
 ) {
     if (generatedPropertyNames.isNotEmpty()) {
         val listType = LIST.parameterizedBy(originalClassTypeName)
-        val getAllFunBuilder = FunSpec.builder("getAllCombinations")
-            .addKdoc("Returns a list of all pre-configured [%T] instances.", originalClassTypeName)
-            .returns(listType)
+        val getAllFunBuilder =
+            FunSpec
+                .builder("getAllCombinations")
+                .addKdoc("Returns a list of all pre-configured [%T] instances.", originalClassTypeName)
+                .returns(listType)
         val codeBlockBuilder = CodeBlock.builder().add("return listOf(⇥")
         generatedPropertyNames.forEachIndexed { index, propName ->
-            if (index == 0) codeBlockBuilder.add("\n%N", propName)
-            else codeBlockBuilder.add(",\n%N", propName)
+            if (index == 0) {
+                codeBlockBuilder.add("\n%N", propName)
+            } else {
+                codeBlockBuilder.add(",\n%N", propName)
+            }
         }
         codeBlockBuilder.add("\n⇤)")
         getAllFunBuilder.addCode(codeBlockBuilder.build())

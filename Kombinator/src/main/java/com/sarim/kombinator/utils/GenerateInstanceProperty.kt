@@ -21,7 +21,7 @@ fun writeProperties(
     objectBuilder: TypeSpec.Builder,
     originalClassTypeName: TypeName,
     constructorParameters: List<ConstructorParameterInfo>,
-    logger: KSPLogger
+    logger: KSPLogger,
 ) {
     var instanceCounter = 1
     val currentIndices = IntArray(combinableParameterGroups.size)
@@ -35,14 +35,15 @@ fun writeProperties(
             val possibleValues = combinableParameterGroups[k].second
             val value = possibleValues[currentIndices[k]]
             currentParameterValues[paramInfo.name] = value
-            val valueString = when (value) {
-                is String -> "\"$value\""
-                is Char -> "'$value'"
-                is Float -> "${value}f"
-                else -> value.toString()
-            }
+            val valueString =
+                when (value) {
+                    is String -> "\"$value\""
+                    is Char -> "'$value'"
+                    is Float -> "${value}f"
+                    else -> value.toString()
+                }
             combinationNameParts.add(
-                "${paramInfo.name} = $valueString"
+                "${paramInfo.name} = $valueString",
             )
         }
 
@@ -57,7 +58,7 @@ fun writeProperties(
             parameterValues = currentParameterValues,
             parameterInfos = constructorParameters,
             combinationNameForKdoc = "\n" + combinationNameParts.joinToString("\n"),
-            logger = logger
+            logger = logger,
         )
 
         for (k in combinableParameterGroups.indices.reversed()) {
@@ -77,7 +78,7 @@ fun generateInstanceProperty(
     parameterValues: Map<String, Any>,
     parameterInfos: List<ConstructorParameterInfo>,
     combinationNameForKdoc: String,
-    logger: KSPLogger
+    logger: KSPLogger,
 ) {
     val propertyArgs = mutableListOf<CodeBlock>()
 
@@ -107,20 +108,22 @@ fun generateInstanceProperty(
         }
     }
 
+    val propertyInitializer =
+        CodeBlock
+            .builder()
+            .add("%T(⇥\n", originalClassTypeName)
+            .add(propertyArgs.joinToString(",\n"))
+            .add("\n⇤)")
+            .build()
 
-    val propertyInitializer = CodeBlock.builder()
-        .add("%T(⇥\n", originalClassTypeName)
-        .add(propertyArgs.joinToString(",\n"))
-        .add("\n⇤)")
-        .build()
-
-    val propSpec = PropertySpec.builder(instancePropertyName, originalClassTypeName)
-        .addKdoc(
-            "An instance of [%T] with parameters: %L.\n",
-            originalClassTypeName,
-            combinationNameForKdoc
-        )
-        .initializer(propertyInitializer)
-        .build()
+    val propSpec =
+        PropertySpec
+            .builder(instancePropertyName, originalClassTypeName)
+            .addKdoc(
+                "An instance of [%T] with parameters: %L.\n",
+                originalClassTypeName,
+                combinationNameForKdoc,
+            ).initializer(propertyInitializer)
+            .build()
     objectBuilder.addProperty(propSpec)
 }
