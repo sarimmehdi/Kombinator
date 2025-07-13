@@ -22,7 +22,6 @@ import com.sarim.kombinator_app.sample.SampleDataClass3UShortsWithUShortParamsCo
 import org.junit.Test
 
 class SampleDataClassUShortTest {
-
     @Test
     fun testSampleDataClass1UShortWithUShortParamsCombinations() {
         assertThat(SampleDataClass1UShortWithUShortParamsCombinations.getAllCombinations().size).isEqualTo(2)
@@ -35,8 +34,8 @@ class SampleDataClassUShortTest {
                     SampleDataClass1UShortWithUShortParams(
                         property1 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -62,8 +61,8 @@ class SampleDataClassUShortTest {
                         property1 = 2u,
                         property2 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -113,8 +112,8 @@ class SampleDataClassUShortTest {
                         property2 = 2u,
                         property3 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -130,8 +129,8 @@ class SampleDataClassUShortTest {
                     SampleDataClass1UShortWithAllParams(
                         property1 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -157,8 +156,8 @@ class SampleDataClassUShortTest {
                         property1 = 2u,
                         property2 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -208,8 +207,8 @@ class SampleDataClassUShortTest {
                         property2 = 2u,
                         property3 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -225,8 +224,8 @@ class SampleDataClassUShortTest {
                     SampleDataClass1UShortWithSomeParams(
                         property1 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -252,8 +251,8 @@ class SampleDataClassUShortTest {
                         property1 = 2u,
                         property2 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -303,8 +302,8 @@ class SampleDataClassUShortTest {
                         property2 = 2u,
                         property3 = 2u,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }

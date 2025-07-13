@@ -3,26 +3,25 @@ package com.sarim.kombinator_app
 import com.google.common.truth.Truth.assertThat
 import com.sarim.kombinator_app.sample.SampleDataClass1ByteWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass1ByteWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass1ByteWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass1ByteWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass1ByteWithByteParams
 import com.sarim.kombinator_app.sample.SampleDataClass1ByteWithByteParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass1ByteWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass1ByteWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2BytesWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass2BytesWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass2BytesWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass2BytesWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2BytesWithByteParams
 import com.sarim.kombinator_app.sample.SampleDataClass2BytesWithByteParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass2BytesWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass2BytesWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3BytesWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass3BytesWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass3BytesWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass3BytesWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3BytesWithByteParams
 import com.sarim.kombinator_app.sample.SampleDataClass3BytesWithByteParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass3BytesWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass3BytesWithSomeParamsCombinations
 import org.junit.Test
 
 class SampleDataClassByteTest {
-
     @Test
     fun testSampleDataClass1ByteWithByteParamsCombinations() {
         assertThat(SampleDataClass1ByteWithByteParamsCombinations.getAllCombinations().size).isEqualTo(2)
@@ -35,8 +34,8 @@ class SampleDataClassByteTest {
                     SampleDataClass1ByteWithByteParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -62,8 +61,8 @@ class SampleDataClassByteTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -113,8 +112,8 @@ class SampleDataClassByteTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -130,8 +129,8 @@ class SampleDataClassByteTest {
                     SampleDataClass1ByteWithAllParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -157,8 +156,8 @@ class SampleDataClassByteTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -208,8 +207,8 @@ class SampleDataClassByteTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -225,8 +224,8 @@ class SampleDataClassByteTest {
                     SampleDataClass1ByteWithSomeParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -252,8 +251,8 @@ class SampleDataClassByteTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -303,8 +302,8 @@ class SampleDataClassByteTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }

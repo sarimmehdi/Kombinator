@@ -3,14 +3,14 @@ package com.sarim.kombinator_app.sample
 import com.sarim.kombinator.Kombine
 
 @Kombine(
-    allPossibleFloatParams = [1f, 2f]
+    allPossibleFloatParams = [1f, 2f],
 )
 data class SampleDataClass1FloatWithFloatParams(
     val property1: Float,
 )
 
 @Kombine(
-    allPossibleFloatParams = [1f, 2f]
+    allPossibleFloatParams = [1f, 2f],
 )
 data class SampleDataClass2FloatsWithFloatParams(
     val property1: Float,
@@ -18,7 +18,7 @@ data class SampleDataClass2FloatsWithFloatParams(
 )
 
 @Kombine(
-    allPossibleFloatParams = [1f, 2f]
+    allPossibleFloatParams = [1f, 2f],
 )
 data class SampleDataClass3FloatsWithFloatParams(
     val property1: Float,

@@ -3,26 +3,25 @@ package com.sarim.kombinator_app
 import com.google.common.truth.Truth.assertThat
 import com.sarim.kombinator_app.sample.SampleDataClass1ShortWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass1ShortWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass1ShortWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass1ShortWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass1ShortWithShortParams
 import com.sarim.kombinator_app.sample.SampleDataClass1ShortWithShortParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass1ShortWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass1ShortWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2ShortsWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass2ShortsWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass2ShortsWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass2ShortsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2ShortsWithShortParams
 import com.sarim.kombinator_app.sample.SampleDataClass2ShortsWithShortParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass2ShortsWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass2ShortsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3ShortsWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass3ShortsWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass3ShortsWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass3ShortsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3ShortsWithShortParams
 import com.sarim.kombinator_app.sample.SampleDataClass3ShortsWithShortParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass3ShortsWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass3ShortsWithSomeParamsCombinations
 import org.junit.Test
 
 class SampleDataClassShortTest {
-
     @Test
     fun testSampleDataClass1ShortWithShortParamsCombinations() {
         assertThat(SampleDataClass1ShortWithShortParamsCombinations.getAllCombinations().size).isEqualTo(2)
@@ -35,8 +34,8 @@ class SampleDataClassShortTest {
                     SampleDataClass1ShortWithShortParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -62,8 +61,8 @@ class SampleDataClassShortTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -113,8 +112,8 @@ class SampleDataClassShortTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -130,8 +129,8 @@ class SampleDataClassShortTest {
                     SampleDataClass1ShortWithAllParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -157,8 +156,8 @@ class SampleDataClassShortTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -208,8 +207,8 @@ class SampleDataClassShortTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -225,8 +224,8 @@ class SampleDataClassShortTest {
                     SampleDataClass1ShortWithSomeParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -252,8 +251,8 @@ class SampleDataClassShortTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -303,8 +302,8 @@ class SampleDataClassShortTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }

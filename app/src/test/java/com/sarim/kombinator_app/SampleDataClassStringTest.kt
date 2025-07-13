@@ -22,7 +22,6 @@ import com.sarim.kombinator_app.sample.SampleDataClass3StringsWithStringParamsCo
 import org.junit.Test
 
 class SampleDataClassStringTest {
-
     @Test
     fun testSampleDataClass1StringWithStringParamsCombinations() {
         assertThat(SampleDataClass1StringWithStringParamsCombinations.getAllCombinations().size).isEqualTo(2)
@@ -35,8 +34,8 @@ class SampleDataClassStringTest {
                     SampleDataClass1StringWithStringParams(
                         property1 = "cde",
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -62,8 +61,8 @@ class SampleDataClassStringTest {
                         property1 = "cde",
                         property2 = "cde",
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -113,8 +112,8 @@ class SampleDataClassStringTest {
                         property2 = "cde",
                         property3 = "cde",
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -130,8 +129,8 @@ class SampleDataClassStringTest {
                     SampleDataClass1StringWithAllParams(
                         property1 = "cde",
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -157,8 +156,8 @@ class SampleDataClassStringTest {
                         property1 = "cde",
                         property2 = "cde",
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -208,8 +207,8 @@ class SampleDataClassStringTest {
                         property2 = "cde",
                         property3 = "cde",
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -225,8 +224,8 @@ class SampleDataClassStringTest {
                     SampleDataClass1StringWithSomeParams(
                         property1 = "cde",
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -252,8 +251,8 @@ class SampleDataClassStringTest {
                         property1 = "cde",
                         property2 = "cde",
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -303,8 +302,8 @@ class SampleDataClassStringTest {
                         property2 = "cde",
                         property3 = "cde",
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }

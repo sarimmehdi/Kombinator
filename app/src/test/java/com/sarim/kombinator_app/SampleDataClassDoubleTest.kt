@@ -3,26 +3,25 @@ package com.sarim.kombinator_app
 import com.google.common.truth.Truth.assertThat
 import com.sarim.kombinator_app.sample.SampleDataClass1DoubleWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass1DoubleWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass1DoubleWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass1DoubleWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass1DoubleWithDoubleParams
 import com.sarim.kombinator_app.sample.SampleDataClass1DoubleWithDoubleParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass1DoubleWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass1DoubleWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2DoublesWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass2DoublesWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass2DoublesWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass2DoublesWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2DoublesWithDoubleParams
 import com.sarim.kombinator_app.sample.SampleDataClass2DoublesWithDoubleParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass2DoublesWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass2DoublesWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3DoublesWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass3DoublesWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass3DoublesWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass3DoublesWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3DoublesWithDoubleParams
 import com.sarim.kombinator_app.sample.SampleDataClass3DoublesWithDoubleParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass3DoublesWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass3DoublesWithSomeParamsCombinations
 import org.junit.Test
 
 class SampleDataClassDoubleTest {
-
     @Test
     fun testSampleDataClass1DoubleWithDoubleParamsCombinations() {
         assertThat(SampleDataClass1DoubleWithDoubleParamsCombinations.getAllCombinations().size).isEqualTo(2)
@@ -35,8 +34,8 @@ class SampleDataClassDoubleTest {
                     SampleDataClass1DoubleWithDoubleParams(
                         property1 = 2.0,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -62,8 +61,8 @@ class SampleDataClassDoubleTest {
                         property1 = 2.0,
                         property2 = 2.0,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -113,8 +112,8 @@ class SampleDataClassDoubleTest {
                         property2 = 2.0,
                         property3 = 2.0,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -130,8 +129,8 @@ class SampleDataClassDoubleTest {
                     SampleDataClass1DoubleWithAllParams(
                         property1 = 2.0,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -157,8 +156,8 @@ class SampleDataClassDoubleTest {
                         property1 = 2.0,
                         property2 = 2.0,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -208,8 +207,8 @@ class SampleDataClassDoubleTest {
                         property2 = 2.0,
                         property3 = 2.0,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -225,8 +224,8 @@ class SampleDataClassDoubleTest {
                     SampleDataClass1DoubleWithSomeParams(
                         property1 = 2.0,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -252,8 +251,8 @@ class SampleDataClassDoubleTest {
                         property1 = 2.0,
                         property2 = 2.0,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -303,8 +302,8 @@ class SampleDataClassDoubleTest {
                         property2 = 2.0,
                         property3 = 2.0,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }

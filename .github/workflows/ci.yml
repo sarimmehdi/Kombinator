@@ -9,13 +9,39 @@ on:
   workflow_dispatch:
 
 jobs:
+  ktlint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4.7.1
+        with:
+          java-version: '21'
+          distribution: 'zulu'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Run ktlintFormat
+        run: ./gradlew ktlintFormat
+
+      - name: Check for KTLint violations
+        run: |
+          ./gradlew ktlintCheck
+          if [ $? -ne 0 ]; then
+            echo "KTLint found violations that could not be automatically fixed."
+            exit 1
+          fi
   build_app:
     name: Build Application
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Set up JDK
         uses: actions/setup-java@v4.7.1

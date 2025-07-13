@@ -25,5 +25,5 @@ data class ConstructorParameterInfo(
     val isUInt: Boolean = false,
     val isULong: Boolean = false,
     val isEnum: Boolean = false,
-    val enumClassDeclaration: KSClassDeclaration? = null
+    val enumClassDeclaration: KSClassDeclaration? = null,
 )

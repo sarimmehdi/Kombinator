@@ -3,14 +3,14 @@ package com.sarim.kombinator_app.sample
 import com.sarim.kombinator.Kombine
 
 @Kombine(
-    allPossibleUIntParams = [1u, 2u]
+    allPossibleUIntParams = [1u, 2u],
 )
 data class SampleDataClass1UIntWithUIntParams(
     val property1: UInt,
 )
 
 @Kombine(
-    allPossibleUIntParams = [1u, 2u]
+    allPossibleUIntParams = [1u, 2u],
 )
 data class SampleDataClass2UIntsWithUIntParams(
     val property1: UInt,
@@ -18,7 +18,7 @@ data class SampleDataClass2UIntsWithUIntParams(
 )
 
 @Kombine(
-    allPossibleUIntParams = [1u, 2u]
+    allPossibleUIntParams = [1u, 2u],
 )
 data class SampleDataClass3UIntsWithUIntParams(
     val property1: UInt,

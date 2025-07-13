@@ -57,11 +57,13 @@ data class MixedSampleDataClassSomeParamsAnnotated(
 )
 
 enum class SampleEnum1 {
-    TYPE_1;
+    TYPE_1,
 }
 
 enum class SampleEnum2 {
-    TYPE_1, TYPE_2, TYPE_3;
+    TYPE_1,
+    TYPE_2,
+    TYPE_3,
 }
 
 @Kombine(
@@ -104,7 +106,7 @@ data class MixedSampleDataClassAllParamsAnnotated(
     @Kombine(allPossibleUShortParams = [1u, 2u]) val property7: UShort,
     @Kombine(
         allPossibleCharParams = ['5'],
-        allPossibleDoubleParams = [5.0, 110.0, 71.0]
+        allPossibleDoubleParams = [5.0, 110.0, 71.0],
     ) val property8: Boolean,
     @Kombine(allPossibleIntParams = [1, 2, 3]) val property9: Int,
     @Kombine(allPossibleCharParams = ['5']) val property10: Char,
@@ -121,7 +123,7 @@ data class MixedSampleDataClassAllParamsAnnotatedSomeParamsWithDefaultValue(
     @Kombine(allPossibleUShortParams = [1u, 2u]) val property7: UShort,
     @Kombine(
         allPossibleCharParams = ['5'],
-        allPossibleDoubleParams = [5.0, 110.0, 71.0]
+        allPossibleDoubleParams = [5.0, 110.0, 71.0],
     ) val property8: Boolean,
     @Kombine(allPossibleIntParams = [1, 2, 3]) val property9: Int = 3,
     @Kombine(allPossibleCharParams = ['5']) val property10: Char,

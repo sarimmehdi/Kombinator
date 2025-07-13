@@ -3,26 +3,25 @@ package com.sarim.kombinator_app
 import com.google.common.truth.Truth.assertThat
 import com.sarim.kombinator_app.sample.SampleDataClass1LongWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass1LongWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass1LongWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass1LongWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass1LongWithLongParams
 import com.sarim.kombinator_app.sample.SampleDataClass1LongWithLongParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass1LongWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass1LongWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2LongsWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass2LongsWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass2LongsWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass2LongsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2LongsWithLongParams
 import com.sarim.kombinator_app.sample.SampleDataClass2LongsWithLongParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass2LongsWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass2LongsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3LongsWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass3LongsWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass3LongsWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass3LongsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3LongsWithLongParams
 import com.sarim.kombinator_app.sample.SampleDataClass3LongsWithLongParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass3LongsWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass3LongsWithSomeParamsCombinations
 import org.junit.Test
 
 class SampleDataClassLongTest {
-
     @Test
     fun testSampleDataClass1LongWithLongParamsCombinations() {
         assertThat(SampleDataClass1LongWithLongParamsCombinations.getAllCombinations().size).isEqualTo(2)
@@ -35,8 +34,8 @@ class SampleDataClassLongTest {
                     SampleDataClass1LongWithLongParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -62,8 +61,8 @@ class SampleDataClassLongTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -113,8 +112,8 @@ class SampleDataClassLongTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -130,8 +129,8 @@ class SampleDataClassLongTest {
                     SampleDataClass1LongWithAllParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -157,8 +156,8 @@ class SampleDataClassLongTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -208,8 +207,8 @@ class SampleDataClassLongTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -225,8 +224,8 @@ class SampleDataClassLongTest {
                     SampleDataClass1LongWithSomeParams(
                         property1 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -252,8 +251,8 @@ class SampleDataClassLongTest {
                         property1 = 2,
                         property2 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -303,8 +302,8 @@ class SampleDataClassLongTest {
                         property2 = 2,
                         property3 = 2,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }

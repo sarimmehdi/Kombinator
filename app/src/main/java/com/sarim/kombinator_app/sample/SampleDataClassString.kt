@@ -3,14 +3,14 @@ package com.sarim.kombinator_app.sample
 import com.sarim.kombinator.Kombine
 
 @Kombine(
-    allPossibleStringParams = ["abc", "cde"]
+    allPossibleStringParams = ["abc", "cde"],
 )
 data class SampleDataClass1StringWithStringParams(
     val property1: String,
 )
 
 @Kombine(
-    allPossibleStringParams = ["abc", "cde"]
+    allPossibleStringParams = ["abc", "cde"],
 )
 data class SampleDataClass2StringsWithStringParams(
     val property1: String,
@@ -18,7 +18,7 @@ data class SampleDataClass2StringsWithStringParams(
 )
 
 @Kombine(
-    allPossibleStringParams = ["abc", "cde"]
+    allPossibleStringParams = ["abc", "cde"],
 )
 data class SampleDataClass3StringsWithStringParams(
     val property1: String,

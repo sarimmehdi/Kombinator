@@ -3,26 +3,25 @@ package com.sarim.kombinator_app
 import com.google.common.truth.Truth.assertThat
 import com.sarim.kombinator_app.sample.SampleDataClass1CharWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass1CharWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass1CharWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass1CharWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass1CharWithCharParams
 import com.sarim.kombinator_app.sample.SampleDataClass1CharWithCharParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass1CharWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass1CharWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2CharsWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass2CharsWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass2CharsWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass2CharsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2CharsWithCharParams
 import com.sarim.kombinator_app.sample.SampleDataClass2CharsWithCharParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass2CharsWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass2CharsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3CharsWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass3CharsWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass3CharsWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass3CharsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3CharsWithCharParams
 import com.sarim.kombinator_app.sample.SampleDataClass3CharsWithCharParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass3CharsWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass3CharsWithSomeParamsCombinations
 import org.junit.Test
 
 class SampleDataClassCharTest {
-
     @Test
     fun testSampleDataClass1CharWithCharParamsCombinations() {
         assertThat(SampleDataClass1CharWithCharParamsCombinations.getAllCombinations().size).isEqualTo(2)
@@ -35,8 +34,8 @@ class SampleDataClassCharTest {
                     SampleDataClass1CharWithCharParams(
                         property1 = '2',
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -62,8 +61,8 @@ class SampleDataClassCharTest {
                         property1 = '2',
                         property2 = '2',
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -113,8 +112,8 @@ class SampleDataClassCharTest {
                         property2 = '2',
                         property3 = '2',
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -130,8 +129,8 @@ class SampleDataClassCharTest {
                     SampleDataClass1CharWithAllParams(
                         property1 = '2',
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -157,8 +156,8 @@ class SampleDataClassCharTest {
                         property1 = '2',
                         property2 = '2',
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -208,8 +207,8 @@ class SampleDataClassCharTest {
                         property2 = '2',
                         property3 = '2',
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -225,8 +224,8 @@ class SampleDataClassCharTest {
                     SampleDataClass1CharWithSomeParams(
                         property1 = '2',
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -252,8 +251,8 @@ class SampleDataClassCharTest {
                         property1 = '2',
                         property2 = '2',
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -303,8 +302,8 @@ class SampleDataClassCharTest {
                         property2 = '2',
                         property3 = '2',
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }

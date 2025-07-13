@@ -3,26 +3,25 @@ package com.sarim.kombinator_app
 import com.google.common.truth.Truth.assertThat
 import com.sarim.kombinator_app.sample.SampleDataClass1FloatWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass1FloatWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass1FloatWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass1FloatWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass1FloatWithFloatParams
 import com.sarim.kombinator_app.sample.SampleDataClass1FloatWithFloatParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass1FloatWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass1FloatWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2FloatsWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass2FloatsWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass2FloatsWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass2FloatsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass2FloatsWithFloatParams
 import com.sarim.kombinator_app.sample.SampleDataClass2FloatsWithFloatParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass2FloatsWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass2FloatsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3FloatsWithAllParams
 import com.sarim.kombinator_app.sample.SampleDataClass3FloatsWithAllParamsCombinations
-import com.sarim.kombinator_app.sample.SampleDataClass3FloatsWithSomeParams
-import com.sarim.kombinator_app.sample.SampleDataClass3FloatsWithSomeParamsCombinations
 import com.sarim.kombinator_app.sample.SampleDataClass3FloatsWithFloatParams
 import com.sarim.kombinator_app.sample.SampleDataClass3FloatsWithFloatParamsCombinations
+import com.sarim.kombinator_app.sample.SampleDataClass3FloatsWithSomeParams
+import com.sarim.kombinator_app.sample.SampleDataClass3FloatsWithSomeParamsCombinations
 import org.junit.Test
 
 class SampleDataClassFloatTest {
-
     @Test
     fun testSampleDataClass1FloatWithFloatParamsCombinations() {
         assertThat(SampleDataClass1FloatWithFloatParamsCombinations.getAllCombinations().size).isEqualTo(2)
@@ -35,8 +34,8 @@ class SampleDataClassFloatTest {
                     SampleDataClass1FloatWithFloatParams(
                         property1 = 2f,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -62,8 +61,8 @@ class SampleDataClassFloatTest {
                         property1 = 2f,
                         property2 = 2f,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -113,8 +112,8 @@ class SampleDataClassFloatTest {
                         property2 = 2f,
                         property3 = 2f,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -130,8 +129,8 @@ class SampleDataClassFloatTest {
                     SampleDataClass1FloatWithAllParams(
                         property1 = 2f,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -157,8 +156,8 @@ class SampleDataClassFloatTest {
                         property1 = 2f,
                         property2 = 2f,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -208,8 +207,8 @@ class SampleDataClassFloatTest {
                         property2 = 2f,
                         property3 = 2f,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -225,8 +224,8 @@ class SampleDataClassFloatTest {
                     SampleDataClass1FloatWithSomeParams(
                         property1 = 2f,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -252,8 +251,8 @@ class SampleDataClassFloatTest {
                         property1 = 2f,
                         property2 = 2f,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 
@@ -303,8 +302,8 @@ class SampleDataClassFloatTest {
                         property2 = 2f,
                         property3 = 2f,
                     ),
-                )
-            )
+                ),
+            ),
         ).isEqualTo(true)
     }
 }
