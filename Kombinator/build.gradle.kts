@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinJvmPlugin)
     alias(libs.plugins.ktlintPlugin)
     alias(libs.plugins.detektPlugin)
+    alias(libs.plugins.vanniktechMavenPublishingPlugin)
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -28,5 +29,39 @@ ktlint {
         reporter(ReporterType.PLAIN)
         reporter(ReporterType.CHECKSTYLE)
         reporter(ReporterType.SARIF)
+    }
+}
+
+mavenPublishing {
+    publishToMavenCentral()
+
+    signAllPublications()
+
+    coordinates("io.github.sarimmehdi", "kombinator", "1.0.0")
+
+    pom {
+        name = "Kombinator"
+        description = "A library for generating all possible data class objects based on its parameters"
+        inceptionYear = "2025"
+        url = "https://github.com/sarimmehdi/Kombinator"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+            }
+        }
+        developers {
+            developer {
+                id = "sarimmehdi"
+                name = "Muhammad Sarim Mehdi"
+                url = "https://github.com/sarimmehdi"
+            }
+        }
+        scm {
+            url = "https://github.com/sarimmehdi/Kombinator"
+            connection = "scm:git:git://github.com/sarimmehdi/Kombinator.git"
+            developerConnection = "scm:git:ssh://git@github.com/sarimmehdi/Kombinator.git"
+        }
     }
 }

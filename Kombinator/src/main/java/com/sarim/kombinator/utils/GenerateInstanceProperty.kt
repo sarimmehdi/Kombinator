@@ -14,7 +14,7 @@ import com.squareup.kotlinpoet.U_LONG
 import com.squareup.kotlinpoet.U_SHORT
 
 @Suppress("LongParameterList")
-fun writeProperties(
+internal fun writeProperties(
     totalCombinations: Int,
     combinableParameterGroups: MutableList<Pair<ConstructorParameterInfo, List<Any>>>,
     originalClassNameString: String,
@@ -73,7 +73,7 @@ fun writeProperties(
 }
 
 @Suppress("LongParameterList", "CyclomaticComplexMethod")
-fun generateInstanceProperty(
+internal fun generateInstanceProperty(
     objectBuilder: TypeSpec.Builder,
     originalClassTypeName: TypeName,
     instancePropertyName: String,

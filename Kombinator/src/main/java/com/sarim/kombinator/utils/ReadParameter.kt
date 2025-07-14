@@ -16,7 +16,7 @@ import com.squareup.kotlinpoet.U_LONG
 import com.squareup.kotlinpoet.U_SHORT
 
 @Suppress("CyclomaticComplexMethod", "LongMethod")
-fun readParameter(
+internal fun readParameter(
     constructorParameters: List<ConstructorParameterInfo>,
     classLevelAnnotation: KSAnnotation?,
     combinableParameterGroups: MutableList<Pair<ConstructorParameterInfo, List<Any>>>,
