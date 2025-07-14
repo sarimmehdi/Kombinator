@@ -9,6 +9,7 @@ truthVersion = "1.4.4"
 junitVersion = "4.13.2"
 ktlintVersion = "13.0.0"
 detektVersion = "1.23.8"
+vanniktechVersion = "0.33.0"
 
 [libraries]
 kspApiLibrary = { group = "com.google.devtools.ksp", name = "symbol-processing-api", version.ref = "kspVersion" }
@@ -25,4 +26,5 @@ jetbrainsKotlinJvmPlugin = { id = "org.jetbrains.kotlin.jvm", version.ref = "jet
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 ktlintPlugin = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlintVersion" }
 detektPlugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detektVersion" }
+vanniktechMavenPublishingPlugin = { id = "com.vanniktech.maven.publish", version.ref = "vanniktechVersion" }
 

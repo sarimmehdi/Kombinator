@@ -31,7 +31,7 @@ import com.squareup.kotlinpoet.U_LONG
 import com.squareup.kotlinpoet.U_SHORT
 import com.squareup.kotlinpoet.ksp.toTypeName
 
-class Processor(
+internal class Processor(
     private val codeGenerator: CodeGenerator,
     private val logger: KSPLogger,
 ) : SymbolProcessor {

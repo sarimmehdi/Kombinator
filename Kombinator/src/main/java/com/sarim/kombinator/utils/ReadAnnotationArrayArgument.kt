@@ -3,7 +3,7 @@ package com.sarim.kombinator.utils
 import com.google.devtools.ksp.processing.KSPLogger
 import com.google.devtools.ksp.symbol.KSAnnotation
 
-fun <T> readAnnotationArrayArgument(
+internal fun <T> readAnnotationArrayArgument(
     annotation: KSAnnotation,
     argumentName: String,
     expectedItemTypeName: String,
@@ -27,9 +27,9 @@ fun <T> readAnnotationArrayArgument(
                     if (castedValue == null) {
                         logger.warn(
                             "Unexpected item type or failed cast in '$argumentName' " +
-                                    "for @${annotation.shortName.asString()}. Expected to be able to " +
-                                    "convert to $expectedItemTypeName, got ${item::class.qualifiedName} " +
-                                    "with value '$item'.",
+                                "for @${annotation.shortName.asString()}. Expected to be able to " +
+                                "convert to $expectedItemTypeName, got ${item::class.qualifiedName} " +
+                                "with value '$item'.",
                             annotation,
                         )
                         null
@@ -39,10 +39,12 @@ fun <T> readAnnotationArrayArgument(
                 }
             }
         }
+
         null -> {
             // Argument not found or is null, this is not an error, just means no values provided
             emptyList()
         }
+
         else -> {
             logger.warn(
                 "Argument '$argumentName' for @${annotation.shortName.asString()} is not a List. " +

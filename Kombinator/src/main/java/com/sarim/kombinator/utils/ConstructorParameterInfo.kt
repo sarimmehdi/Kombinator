@@ -5,7 +5,7 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSValueParameter
 import com.squareup.kotlinpoet.TypeName
 
-data class ConstructorParameterInfo(
+internal data class ConstructorParameterInfo(
     val name: String,
     val type: TypeName,
     val hasDefaultValue: Boolean,
