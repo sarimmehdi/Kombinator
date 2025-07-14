@@ -56,7 +56,7 @@ jobs:
         run: ./gradlew detekt --auto-correct
 
       - name: Check for remaining Detekt issues
-        run: ./gradlew detektCheck
+        run: ./gradlew detekt
 
       - name: Upload Detekt reports
         if: failure()
